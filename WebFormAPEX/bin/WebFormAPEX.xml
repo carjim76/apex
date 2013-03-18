@@ -1,0 +1,924 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+WebFormAPEX
+</name>
+</assembly>
+<members>
+<member name="F:WebFormAPEX.wucPrincipalForm.lblOrderingProvider">
+	<summary>
+lblOrderingProvider control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.ddlOrderingProvider">
+	<summary>
+ddlOrderingProvider control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.printBC">
+	<summary>
+printBC control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.printReport">
+	<summary>
+printReport control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPatienData">
+	<summary>
+lblPatienData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblGuarantorData">
+	<summary>
+lblGuarantorData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblInsuranceData">
+	<summary>
+lblInsuranceData control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDMRN">
+	<summary>
+lblPDMRN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDMRN">
+	<summary>
+txtPDMRN control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDFirstName">
+	<summary>
+lblPDFirstName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDFirstName">
+	<summary>
+txtPDFirstName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDMiddleName">
+	<summary>
+lblPDMiddleName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDMiddleName">
+	<summary>
+txtPDMiddleName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDLastName">
+	<summary>
+lblPDLastName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDLastName">
+	<summary>
+txtPDLastName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucGender1">
+	<summary>
+wucGender1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDBirthday">
+	<summary>
+lblPDBirthday control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDBirthday">
+	<summary>
+txtPDBirthday control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDEthnicity">
+	<summary>
+lblPDEthnicity control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.ddlPDEthnicity">
+	<summary>
+ddlPDEthnicity control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDAddress">
+	<summary>
+lblPDAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDAddress">
+	<summary>
+txtPDAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDCity">
+	<summary>
+lblPDCity control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDCity">
+	<summary>
+txtPDCity control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucState1">
+	<summary>
+wucState1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDZip">
+	<summary>
+lblPDZip control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDZip">
+	<summary>
+txtPDZip control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDOrder">
+	<summary>
+lblPDOrder control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDOrder">
+	<summary>
+txtPDOrder control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPDSpecimenCollect">
+	<summary>
+lblPDSpecimenCollect control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDDateSpecimenCollect">
+	<summary>
+txtPDDateSpecimenCollect control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtPDHourSpecimenCollectDate">
+	<summary>
+txtPDHourSpecimenCollectDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblGDFirstName">
+	<summary>
+lblGDFirstName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtGDFirstName">
+	<summary>
+txtGDFirstName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblGDMiddleName">
+	<summary>
+lblGDMiddleName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtGDMiddleName">
+	<summary>
+txtGDMiddleName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblGDLastName">
+	<summary>
+lblGDLastName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtGDLastName">
+	<summary>
+txtGDLastName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucGender2">
+	<summary>
+wucGender2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblGDBirthday">
+	<summary>
+lblGDBirthday control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtGDBirthday">
+	<summary>
+txtGDBirthday control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucRelationship1">
+	<summary>
+wucRelationship1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblGDAddress">
+	<summary>
+lblGDAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtGDAddress">
+	<summary>
+txtGDAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblGDCity">
+	<summary>
+lblGDCity control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtGDCity">
+	<summary>
+txtGDCity control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucState2">
+	<summary>
+wucState2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblGDZip">
+	<summary>
+lblGDZip control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtGDZip">
+	<summary>
+txtGDZip control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblInsurancePlan">
+	<summary>
+lblInsurancePlan control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtInsurancePlan">
+	<summary>
+txtInsurancePlan control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblIDFirstName">
+	<summary>
+lblIDFirstName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtIDFirstName">
+	<summary>
+txtIDFirstName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblIDMiddleName">
+	<summary>
+lblIDMiddleName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtIDMiddleName">
+	<summary>
+txtIDMiddleName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblIDLastName">
+	<summary>
+lblIDLastName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtIDLastName">
+	<summary>
+txtIDLastName control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucGender3">
+	<summary>
+wucGender3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblIDBirthday">
+	<summary>
+lblIDBirthday control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtIDBirthday">
+	<summary>
+txtIDBirthday control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucRelationship2">
+	<summary>
+wucRelationship2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblIDAddress">
+	<summary>
+lblIDAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtIDAddress">
+	<summary>
+txtIDAddress control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblIDCity">
+	<summary>
+lblIDCity control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtIDCity">
+	<summary>
+txtIDCity control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucState3">
+	<summary>
+wucState3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblIDZip">
+	<summary>
+lblIDZip control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtIDZip">
+	<summary>
+txtIDZip control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblIDGroup">
+	<summary>
+lblIDGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtIDGroup">
+	<summary>
+txtIDGroup control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblIDPolicy">
+	<summary>
+lblIDPolicy control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtIDPolicy">
+	<summary>
+txtIDPolicy control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblTest">
+	<summary>
+lblTest control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.Label1">
+	<summary>
+Label1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.Label2">
+	<summary>
+Label2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.Label3">
+	<summary>
+Label3 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.Label4">
+	<summary>
+Label4 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.ddlMedicalTest1">
+	<summary>
+ddlMedicalTest1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD11">
+	<summary>
+txtICD11 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD12">
+	<summary>
+txtICD12 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD13">
+	<summary>
+txtICD13 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD14">
+	<summary>
+txtICD14 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.ddlMedicalTest2">
+	<summary>
+ddlMedicalTest2 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD21">
+	<summary>
+txtICD21 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD22">
+	<summary>
+txtICD22 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD23">
+	<summary>
+txtICD23 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD24">
+	<summary>
+txtICD24 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucGridSearch1">
+	<summary>
+wucGridSearch1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.btnReset">
+	<summary>
+btnReset control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.btnSearch">
+	<summary>
+btnSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.btnSubmit">
+	<summary>
+btnSubmit control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.btnMenu">
+	<summary>
+btnMenu control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucGender.lblPDGender">
+	<summary>
+lblPDGender control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucGender.ddlGender">
+	<summary>
+ddlGender control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucGridSearch.GridSearch">
+	<summary>
+GridSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucCalendar.TextBox1">
+	<summary>
+TextBox1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucCalendar.Calendar1">
+	<summary>
+Calendar1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.SearchPatient.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.SearchPatient.wucGridSearch1">
+	<summary>
+wucGridSearch1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucState.lblState">
+	<summary>
+lblState control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucState.ddlState">
+	<summary>
+ddlState control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX._Default.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.principalForm.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.principalForm.wucPrincipalForm1">
+	<summary>
+wucPrincipalForm1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="P:WebFormAPEX.My.MyWebExtension.Computer">
+	<summary>
+ Returns information about the host computer.
+ </summary>
+</member><member name="P:WebFormAPEX.My.MyWebExtension.User">
+	<summary>
+ Returns information for the current Web user.
+ </summary>
+</member><member name="P:WebFormAPEX.My.MyWebExtension.Request">
+	<summary>
+ Returns Request object.
+ </summary>
+</member><member name="P:WebFormAPEX.My.MyWebExtension.Response">
+	<summary>
+ Returns Response object.
+ </summary>
+</member><member name="P:WebFormAPEX.My.MyWebExtension.Log">
+	<summary>
+ Returns the Asp log object.
+ </summary>
+</member><member name="T:WebFormAPEX.My.MyWebExtension">
+	<summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+	<remarks></remarks>
+</member><member name="F:WebFormAPEX.wucRelationship.lblRelationship">
+	<summary>
+lblRelationship control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucRelationship.ddlRelationship">
+	<summary>
+ddlRelationship control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucMedicalTest.ddlMedicalTest">
+	<summary>
+ddlMedicalTest control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucMedicalTest.txtICD11">
+	<summary>
+txtICD11 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucMedicalTest.txtICD12">
+	<summary>
+txtICD12 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucMedicalTest.txtICD13">
+	<summary>
+txtICD13 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucMedicalTest.txtICD14">
+	<summary>
+txtICD14 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>

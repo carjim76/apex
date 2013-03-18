@@ -1,0 +1,10 @@
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\bin\WebFormAPEX.dll
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\bin\WebFormAPEX.pdb
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\bin\WebFormAPEX.xml
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\obj\Debug\ResolveAssemblyReference.cache
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\obj\Debug\WebFormAPEX.Resources.resources
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\obj\Debug\ResGen.read.1.tlog
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\obj\Debug\ResGen.write.1.tlog
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\obj\Debug\WebFormAPEX.dll
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\obj\Debug\WebFormAPEX.xml
+c:\users\bic\documents\visual studio 2010\Projects\WebFormAPEX\WebFormAPEX\obj\Debug\WebFormAPEX.pdb

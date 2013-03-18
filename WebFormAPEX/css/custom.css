@@ -1,0 +1,20 @@
+.formee {
+        font-size: 14px;
+    }
+    
+    .title1{
+        color: #05568D;
+        font-size: 20px;
+    }
+    
+    #wucPrincipalForm1_lblPatienData, #wucPrincipalForm1_lblGuarantorData,  #wucPrincipalForm1_lblInsuranceData {
+    color: #5393C1;
+    font-size: 22px;
+    font-weight: bold;
+    }
+    
+    .main_title {
+    color: #5393C1;
+    font-size: 40px;
+    text-shadow: 1px 1px 1px black;
+}
