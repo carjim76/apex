@@ -12,6 +12,7 @@ Public Class DataBaseTransactions
     Private _medicalTestChain As String
 
 #Region "Patient Attributes"
+    Private _patientId As Integer
     Private _patientMRN As Integer
     Private _patientFirstname As String
     Private _patientMiddleName As String
@@ -74,6 +75,14 @@ Public Class DataBaseTransactions
 
 #Region "Patient Properties"
 
+    Public Property PatientId() As Integer
+        Get
+            Return _patientId
+        End Get
+        Set(ByVal value As Integer)
+            _patientId = value
+        End Set
+    End Property
     Public Property PatientMRN() As Integer
         Get
             Return _patientMRN
@@ -394,6 +403,7 @@ Public Class DataBaseTransactions
         Me._insuranceZip = info.GetValue("_insuranceZip", GetType(String))
         Me._flag = info.GetValue("_flag", GetType(Integer))
         Me._medicalTestChain = info.GetValue("_medicalTestChain", GetType(String))
+        Me._patientId = info.GetValue("_patientId", GetType(Integer))
     End Sub
 #End Region
 
@@ -434,6 +444,7 @@ Public Class DataBaseTransactions
         info.AddValue("_insuranceZip", _insuranceZip)
         info.AddValue("_flag", _flag)
         info.AddValue("_medicalTestChain", _medicalTestChain)
+        info.AddValue("_patientId", _patientId)
     End Sub
 
     'Function that fills the catalogs of the web application
@@ -475,5 +486,11 @@ Public Class DataBaseTransactions
         Dim dt As DataTable = New DataTable
         dt = data.getOrderNumber()
         Return dt
+    End Function
+
+    Public Function searchDataByPatientId() As DataSet
+        Dim ds As DataSet = New DataSet
+        ds = data.searchDataByPatientId(PatientId)
+        Return ds
     End Function
 End Class

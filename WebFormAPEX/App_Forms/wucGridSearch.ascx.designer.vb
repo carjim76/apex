@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class wucGridSearch
 
     '''<summary>
+    '''btnBack control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnBack As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''GridSearch control.
     '''</summary>
     '''<remarks>
@@ -21,4 +30,13 @@ Partial Public Class wucGridSearch
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridSearch As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''hdfPatientId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hdfPatientId As Global.System.Web.UI.WebControls.HiddenField
 End Class

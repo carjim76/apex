@@ -78,9 +78,11 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Forms\Images\btnNext.jpg" />
     <Content Include="App_Forms\Images\printer.gif" />
     <Content Include="App_Forms\SearchPatient.aspx" />
     <Content Include="App_Forms\wucCalendar.ascx" />
+    <Content Include="App_Forms\wucContent.ascx" />
     <Content Include="App_Forms\wucGender.ascx" />
     <Content Include="App_Forms\wucGridSearch.ascx" />
     <Content Include="App_Forms\wucMedicalTest.ascx" />
@@ -153,6 +155,13 @@
       <DependentUpon>wucCalendar.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="App_Forms\wucContent.ascx.designer.vb">
+      <DependentUpon>wucContent.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Forms\wucContent.ascx.vb">
+      <DependentUpon>wucContent.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="App_Forms\wucGender.ascx.designer.vb">
       <DependentUpon>wucGender.ascx</DependentUpon>
     </Compile>
@@ -191,6 +200,7 @@
     <Compile Include="Code\DataBaseTransactions.vb" />
     <Compile Include="Code\DatDataBaseTransactions.vb" />
     <Compile Include="Code\DBConnect.vb" />
+    <Compile Include="Code\MyTextBox.vb" />
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -260,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="App_Themes\Theme1\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

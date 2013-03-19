@@ -222,4 +222,7 @@
   <data name="pathFont" xml:space="preserve">
     <value>Fonts\3OF9.TTF</value>
   </data>
+  <data name="titleLblHourSpecimenCollectResource" xml:space="preserve">
+    <value>Specimen Collect</value>
+  </data>
 </root>

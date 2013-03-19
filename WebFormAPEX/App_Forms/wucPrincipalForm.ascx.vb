@@ -35,17 +35,18 @@ Public Class wucPrincipalForm
     End Property
 #End Region
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        AddHandler wucGridSearch1.FillFormFields, AddressOf SelectPatient
+        AddHandler wucGridSearch1.Back, AddressOf back
+        'opDB = 1
         If Not Page.IsPostBack Then
+            Me.divSearch.Visible = False
+            loadHour()
             loadCatalogs()
             opDB = 1
             getOrderNumber()
             loadFont()
             If Not myFont Is Nothing Then
-                Dim ar As String
                 'lblPatienData.Font = myFont
-                'lblPatienData.Font = System.Drawing.FontFamily
-
-                'lblPatienData.Font = "arial"
             End If
             '    MedicalTestChain = Is Nothing 
         End If
@@ -53,6 +54,7 @@ Public Class wucPrincipalForm
 
     Protected Sub btnReset_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnReset.Click
         cleanForm()
+        cleanVariables()
         opDB = 1
     End Sub
     'Method to clean the form fields
@@ -70,7 +72,8 @@ Public Class wucPrincipalForm
         'txtPDOrder.Text = ""
         getOrderNumber()
 
-        txtPDHourSpecimenCollectDate.Text = ""
+        'txtPDHourSpecimenCollectDate.Text = ""
+        loadHour()
 
         txtGDFirstName.Text = ""
         txtGDMiddleName.Text = ""
@@ -159,7 +162,9 @@ Public Class wucPrincipalForm
     'Method that collects form data and save it in database
     Public Sub collectDataOfForm()
         Try
-            dbTransactions.PatientMRN = IIf(txtPDMRN.Text <> "", txtPDMRN.Text, " ")
+            Dim strDate, strHour, strDateAndHour As String
+
+            dbTransactions.PatientMRN = IIf(txtPDMRN.Text <> "", txtPDMRN.Text, 0)
             dbTransactions.PatientFirstname = IIf(txtPDFirstName.Text <> "", txtPDFirstName.Text, " ")
             dbTransactions.PatientMiddleName = txtPDMiddleName.Text
             dbTransactions.PatientLastname = IIf(txtPDLastName.Text <> "", txtPDLastName.Text, " ")
@@ -171,7 +176,12 @@ Public Class wucPrincipalForm
             dbTransactions.PatientStateId = wucState1.getDdlStateValue
             dbTransactions.PatientZip = IIf(txtPDZip.Text <> "", txtPDZip.Text, " ")
             dbTransactions.PatientOrderNumber = IIf(txtPDOrder.Text <> "", txtPDOrder.Text, " ")
-            dbTransactions.PatientSpecimenCollect = IIf(txtPDDateSpecimenCollect.Text <> "", txtPDDateSpecimenCollect.Text, " ")
+
+            strDate = IIf(txtPDDateSpecimenCollect.Text <> "", txtPDDateSpecimenCollect.Text, " ")
+            strHour = IIf(txtPDHourSpecimenCollectDate.Text <> "", txtPDHourSpecimenCollectDate.Text, " ")
+            strDateAndHour = strDate & " " & strHour
+            dbTransactions.PatientSpecimenCollect = IIf(txtPDDateSpecimenCollect.Text <> "", strDateAndHour, " ")
+            'dbTransactions.PatientSpecimenCollect = IIf(txtPDDateSpecimenCollect.Text <> "", txtPDDateSpecimenCollect.Text, " ")
 
             dbTransactions.GuarantorFirstname = IIf(txtGDFirstName.Text <> "", txtGDFirstName.Text, " ")
             dbTransactions.GuarantorMiddleName = txtGDMiddleName.Text
@@ -361,44 +371,11 @@ Public Class wucPrincipalForm
     End Sub
 
     Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubmit.Click
-        'If opDB = 1 Then
-        Dim result As Integer
-        Dim numberOfRows As Integer
-        Dim ds As DataSet
-        Dim MsjAlert As String
-        If validateFields() Then
-            collectDataOfForm()
-            ds = dbTransactions.searchData()
-            numberOfRows = ds.Tables(0).Rows.Count
-            If numberOfRows < 1 Then
-                result = dbTransactions.dataProcessing()
-                If result <> 0 Then
-                    MsjAlert = "<script language='JavaScript'>" & _
-                    "alert('" & GetLocalResourceObject("MsSuccess") & "')" & _
-                    "</script>"
-                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
-                Else
-                    MsjAlert = "<script language='JavaScript'>" & _
-                    "alert('" & GetLocalResourceObject("MsError") & "')" & _
-                    "</script>"
-                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
-                End If
-            Else
-                MsjAlert = "<script language='JavaScript'>" & _
-                    "alert('" & GetLocalResourceObject("MsMrnDuplicated") & "')" & _
-                    "</script>"
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
-            End If
+        If opDB = 1 Then
+            insertNewPatien()
         Else
-            MsjAlert = "<script language='JavaScript'>" & _
-                    "alert('" & GetLocalResourceObject("MsValidated") & "')" & _
-                    "</script>"
-            Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
-
+            Response.Write("actualizar datos")
         End If
-        'Else
-
-        'End If
 
 
 
@@ -451,22 +428,36 @@ Public Class wucPrincipalForm
 
     Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearch.Click
         Dim ds As DataSet
+        Dim dt As DataTable
+
         collectDataOfForm()
 
-        ds = dbTransactions.searchData()
+        'ds = dbTransactions.searchData()
 
-        fillFormFields(ds)
-        'opDB = 2
-        'dt = dbTransactions.SearchPatients
-        'wucGridSearch1.Grid = dt
-        'wucGridSearch1.FillGrid()
+        'fillFormFields(ds)
+        opDB = 2
+        dt = dbTransactions.SearchPatients
+        'If dt.Rows.Count > 1 Then
+        wucGridSearch1.Grid = dt
+        wucGridSearch1.FillGrid()
+
+        'Else
+        '    Dim patientId As Integer
+        '    cleanVariables()
+        '    patientId = dt.Rows(0)(0)
+        '    dbTransactions.PatientId = patientId
+        '    ds = dbTransactions.searchDataByPatientId()
+        '    fillFormFields(ds)
+        'End If
+        Me.divForm.Visible = False
+        Me.divSearch.Visible = True
     End Sub
 
     Public Sub fillFormFields(ByVal ds As DataSet)
 
         Dim stringDate As Date
 
-        'dbTransactions.PatientMRN = ds.Tables(0).Rows(0)(0)
+        txtPDMRN.Text = ds.Tables(0).Rows(0)(1)
         txtPDFirstName.Text = ds.Tables(0).Rows(0)(2)
         txtPDMiddleName.Text = ds.Tables(0).Rows(0)(3)
         txtPDLastName.Text = ds.Tables(0).Rows(0)(4)
@@ -509,6 +500,30 @@ Public Class wucPrincipalForm
         txtPDOrder.Text = ds.Tables(3).Rows(0)(0)
         stringDate = CType(ds.Tables(3).Rows(0)(1), DateTime)
         txtPDDateSpecimenCollect.Text = stringDate.ToString("MM/dd/yyyy")
+        txtPDHourSpecimenCollectDate.Text = stringDate.ToString("HH:mm")
+
+        If ds.Tables(4).Rows.Count = 1 Then
+            txtICD11.Text = IIf(ds.Tables(4).Rows(0)(1) Is DBNull.Value, "", ds.Tables(4).Rows(0)(1))
+            txtICD12.Text = IIf(ds.Tables(4).Rows(0)(2) Is DBNull.Value, "", ds.Tables(4).Rows(0)(2))
+            txtICD13.Text = IIf(ds.Tables(4).Rows(0)(3) Is DBNull.Value, "", ds.Tables(4).Rows(0)(3))
+            txtICD14.Text = IIf(ds.Tables(4).Rows(0)(4) Is DBNull.Value, "", ds.Tables(4).Rows(0)(4))
+            ddlMedicalTest1.SelectedValue = ds.Tables(4).Rows(0)(5)
+        End If
+
+        If ds.Tables(4).Rows.Count >= 2 Then
+            txtICD11.Text = IIf(ds.Tables(4).Rows(0)(1) Is DBNull.Value, "", ds.Tables(4).Rows(0)(1))
+            txtICD12.Text = IIf(ds.Tables(4).Rows(0)(2) Is DBNull.Value, "", ds.Tables(4).Rows(0)(2))
+            txtICD13.Text = IIf(ds.Tables(4).Rows(0)(3) Is DBNull.Value, "", ds.Tables(4).Rows(0)(3))
+            txtICD14.Text = IIf(ds.Tables(4).Rows(0)(4) Is DBNull.Value, "", ds.Tables(4).Rows(0)(4))
+            ddlMedicalTest1.SelectedValue = ds.Tables(4).Rows(0)(5)
+
+            txtICD21.Text = IIf(ds.Tables(4).Rows(1)(1) Is Nothing, "", ds.Tables(4).Rows(1)(1))
+            txtICD22.Text = IIf(ds.Tables(4).Rows(1)(2) Is Nothing, "", ds.Tables(4).Rows(1)(2))
+            txtICD23.Text = IIf(ds.Tables(4).Rows(1)(3) Is Nothing, "", ds.Tables(4).Rows(1)(3))
+            txtICD24.Text = IIf(ds.Tables(4).Rows(1)(4) Is Nothing, "", ds.Tables(4).Rows(1)(4))
+            ddlMedicalTest2.SelectedValue = ds.Tables(4).Rows(1)(5)
+
+        End If
 
     End Sub
 
@@ -621,5 +636,107 @@ Public Class wucPrincipalForm
 
 
         
+    End Sub
+
+    Public Sub SelectPatient()
+        Dim ds As DataSet
+        dbTransactions.PatientId = wucGridSearch1.PatientId
+        ds = dbTransactions.searchDataByPatientId()
+        fillFormFields(ds)
+        Me.divForm.Visible = True
+        Me.divSearch.Visible = False
+    End Sub
+
+    Protected Sub btnMenu_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMenu.Click
+        ''Response.Redirect("SearchPatient.aspx?Grid")
+        ''Response.Redirect("SearchPatient.aspx/FillGrid")
+        Me.divForm.Visible = False
+        Me.divSearch.Visible = True
+    End Sub
+
+    Public Sub cleanVariables()
+        dbTransactions.PatientId = 0
+        dbTransactions.PatientMRN = 0
+        dbTransactions.PatientFirstname = ""
+        dbTransactions.PatientMiddleName = ""
+        dbTransactions.PatientLastname = ""
+        dbTransactions.PatientGender = ""
+        dbTransactions.PatientDOB = ""
+        dbTransactions.PatientEthnicityId = 0
+        dbTransactions.PatientAddress = ""
+        dbTransactions.PatientCity = ""
+        dbTransactions.PatientStateId = ""
+        dbTransactions.PatientZip = ""
+        dbTransactions.PatientOrderNumber = ""
+        dbTransactions.PatientSpecimenCollect = ""
+
+        dbTransactions.GuarantorFirstname = ""
+        dbTransactions.GuarantorMiddleName = ""
+        dbTransactions.GuarantorLastname = ""
+        dbTransactions.GuarantorGender = ""
+        dbTransactions.GuarantorDOB = ""
+        dbTransactions.GuarantorRelationshipId = 0
+        dbTransactions.GuarantorAddress = ""
+        dbTransactions.GuarantorCity = ""
+        dbTransactions.GuarantorStateId = ""
+        dbTransactions.GuarantorZip = ""
+
+        dbTransactions.InsurancePlan = ""
+        dbTransactions.InsuranceFirstname = ""
+        dbTransactions.InsuranceNiddleName = ""
+        dbTransactions.InsuranceLastname = ""
+        dbTransactions.InsuranceGender = ""
+        dbTransactions.InsuranceDOB = ""
+        dbTransactions.InsuranceRelationshipId = 0
+        dbTransactions.InsuranceAddress = ""
+        dbTransactions.InsuranceCity = ""
+        dbTransactions.InsuranceStateId = ""
+        dbTransactions.InsuranceZip = ""
+    End Sub
+    Public Sub loadHour()
+        Dim time As DateTime = Now
+        txtPDHourSpecimenCollectDate.Text = time.ToString("HH:mm")
+    End Sub
+    Public Sub insertNewPatien()
+        Dim result As Integer
+        Dim numberOfRows As Integer
+        Dim ds As DataSet
+        Dim MsjAlert As String
+
+        If validateFields() Then
+            collectDataOfForm()
+            ds = dbTransactions.searchData()
+            numberOfRows = ds.Tables(0).Rows.Count
+            If numberOfRows < 1 Then
+                result = dbTransactions.dataProcessing()
+                If result <> 0 Then
+                    MsjAlert = "<script language='JavaScript'>" & _
+                    "alert('" & GetLocalResourceObject("MsSuccess") & "')" & _
+                    "</script>"
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
+                Else
+                    MsjAlert = "<script language='JavaScript'>" & _
+                    "alert('" & GetLocalResourceObject("MsError") & "')" & _
+                    "</script>"
+                    Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
+                End If
+            Else
+
+                MsjAlert = "<script language='JavaScript'>" & _
+                    "alert('" & GetLocalResourceObject("MsMrnDuplicated") & "')" & _
+                    "</script>"
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
+            End If
+        Else
+            MsjAlert = "<script language='JavaScript'>" & _
+                    "alert('" & GetLocalResourceObject("MsValidated") & "')" & _
+                    "</script>"
+            Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
+
+        End If
+    End Sub
+    Public Sub back()
+        Me.divForm.Visible = True
+        Me.divSearch.Visible = False
     End Sub
 End Class

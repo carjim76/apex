@@ -6,7 +6,15 @@ WebFormAPEX
 </name>
 </assembly>
 <members>
-<member name="F:WebFormAPEX.wucPrincipalForm.lblOrderingProvider">
+<member name="F:WebFormAPEX.wucPrincipalForm.divForm">
+	<summary>
+divForm control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblOrderingProvider">
 	<summary>
 lblOrderingProvider control.
 </summary>
@@ -702,14 +710,6 @@ txtICD24 control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.wucGridSearch1">
-	<summary>
-wucGridSearch1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member><member name="F:WebFormAPEX.wucPrincipalForm.btnReset">
 	<summary>
 btnReset control.
@@ -742,6 +742,22 @@ btnMenu control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.divSearch">
+	<summary>
+divSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.wucGridSearch1">
+	<summary>
+wucGridSearch1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:WebFormAPEX.wucGender.lblPDGender">
 	<summary>
 lblPDGender control.
@@ -758,9 +774,25 @@ ddlGender control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:WebFormAPEX.wucGridSearch.btnBack">
+	<summary>
+btnBack control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:WebFormAPEX.wucGridSearch.GridSearch">
 	<summary>
 GridSearch control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucGridSearch.hdfPatientId">
+	<summary>
+hdfPatientId control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -785,6 +817,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:WebFormAPEX.SearchPatient.form1">
 	<summary>
 form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.SearchPatient.btnBack">
+	<summary>
+btnBack control.
 </summary>
 	<remarks>
 Auto-generated field.

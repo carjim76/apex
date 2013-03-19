@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class wucPrincipalForm
 
     '''<summary>
+    '''divForm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents divForm As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''lblOrderingProvider control.
     '''</summary>
     '''<remarks>
@@ -797,15 +806,6 @@ Partial Public Class wucPrincipalForm
     Protected WithEvents txtICD24 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''wucGridSearch1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents wucGridSearch1 As Global.WebFormAPEX.wucGridSearch
-
-    '''<summary>
     '''btnReset control.
     '''</summary>
     '''<remarks>
@@ -840,4 +840,22 @@ Partial Public Class wucPrincipalForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnMenu As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''divSearch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents divSearch As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''wucGridSearch1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents wucGridSearch1 As Global.WebFormAPEX.wucGridSearch
 End Class

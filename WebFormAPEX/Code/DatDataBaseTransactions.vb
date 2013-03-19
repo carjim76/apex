@@ -363,6 +363,32 @@ Public Class DatDataBaseTransactions
         End Try
     End Function
 
+    Function searchDataByPatientId(ByVal patientId As Integer) As DataSet
+        Dim ds As DataSet = New DataSet
+        Try
+
+            adapter = New SqlDataAdapter
+            command.CommandText = "searchDataByPatientId"
+            command.CommandType = CommandType.StoredProcedure
+            command.Connection = connection
+
+            parameter = New SqlParameter
+            parameter.ParameterName = "@patientId"
+            parameter.SqlDbType = SqlDbType.Int
+            parameter.Value = patientId
+            command.Parameters.Add(parameter)
+
+            connection.Open()
+            adapter.SelectCommand = command
+            adapter.Fill(ds)
+            Return ds
+        Catch ex As Exception
+            Throw ex
+        Finally
+            connection.Close()
+        End Try
+    End Function
+
     Function getOrderNumber() As DataTable
         Dim dt As DataTable = New DataTable
         Try
