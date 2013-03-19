@@ -758,6 +758,38 @@ wucGridSearch1 control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.divBarcode">
+	<summary>
+divBarcode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.pnlBarcode">
+	<summary>
+pnlBarcode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.imgBarcode">
+	<summary>
+imgBarcode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.PrintBarcode.form1">
+	<summary>
+form1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:WebFormAPEX.wucGender.lblPDGender">
 	<summary>
 lblPDGender control.

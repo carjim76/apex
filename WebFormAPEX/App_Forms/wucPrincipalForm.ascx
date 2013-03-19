@@ -27,6 +27,7 @@
         return true;
     }
 </script>
+    
 <div id="divForm" runat="server"> 
     <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -450,3 +451,9 @@
         </tr>
     </table>    
 </div>
+<div id="divBarcode" runat="server" visible="false">
+    <asp:Panel ID="pnlBarcode" runat="server" Height="500px" Width="1200px" >
+        <asp:Image runat="server" ID="imgBarcode" Visible="false" Height="400px" Width="1000px" />
+    </asp:Panel>
+</div>
+

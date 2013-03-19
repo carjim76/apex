@@ -38,6 +38,8 @@ Public Class wucPrincipalForm
         AddHandler wucGridSearch1.FillFormFields, AddressOf SelectPatient
         AddHandler wucGridSearch1.Back, AddressOf back
         'opDB = 1
+       
+
         If Not Page.IsPostBack Then
             Me.divSearch.Visible = False
             loadHour()
@@ -371,11 +373,11 @@ Public Class wucPrincipalForm
     End Sub
 
     Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubmit.Click
-        If opDB = 1 Then
-            insertNewPatien()
-        Else
-            Response.Write("actualizar datos")
-        End If
+        'If opDB = 1 Then
+        insertNewPatien()
+        'Else
+        'Response.Write("actualizar datos")
+        'End If
 
 
 
@@ -517,10 +519,10 @@ Public Class wucPrincipalForm
             txtICD14.Text = IIf(ds.Tables(4).Rows(0)(4) Is DBNull.Value, "", ds.Tables(4).Rows(0)(4))
             ddlMedicalTest1.SelectedValue = ds.Tables(4).Rows(0)(5)
 
-            txtICD21.Text = IIf(ds.Tables(4).Rows(1)(1) Is Nothing, "", ds.Tables(4).Rows(1)(1))
-            txtICD22.Text = IIf(ds.Tables(4).Rows(1)(2) Is Nothing, "", ds.Tables(4).Rows(1)(2))
-            txtICD23.Text = IIf(ds.Tables(4).Rows(1)(3) Is Nothing, "", ds.Tables(4).Rows(1)(3))
-            txtICD24.Text = IIf(ds.Tables(4).Rows(1)(4) Is Nothing, "", ds.Tables(4).Rows(1)(4))
+            txtICD21.Text = IIf(ds.Tables(4).Rows(1)(1) Is DBNull.Value, "", ds.Tables(4).Rows(1)(1))
+            txtICD22.Text = IIf(ds.Tables(4).Rows(1)(2) Is DBNull.Value, "", ds.Tables(4).Rows(1)(2))
+            txtICD23.Text = IIf(ds.Tables(4).Rows(1)(3) Is DBNull.Value, "", ds.Tables(4).Rows(1)(3))
+            txtICD24.Text = IIf(ds.Tables(4).Rows(1)(4) Is DBNull.Value, "", ds.Tables(4).Rows(1)(4))
             ddlMedicalTest2.SelectedValue = ds.Tables(4).Rows(1)(5)
 
         End If
@@ -626,16 +628,13 @@ Public Class wucPrincipalForm
     End Sub
 
     Protected Sub printBC_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles printBC.Click
-        lblPatienData.Text = "*algo123*"
+        Dim strcadena As String
+        strcadena = txtPDFirstName.Text & txtPDBirthday.Text & wucGender1.getDdlGenderText & ddlMedicalTest1.Text
+        imgBarcode.ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}&width=1000&height=400&size=100", strcadena)
+        imgBarcode.Visible = True
 
-        'Dim var As String
-        ''var = Directory.GetFiles(System.Configuration.ConfigurationManager.AppSettings.Get("PATH_FONTS"))
-        ''var = Directory.GetFiles(GetLocalResourceObject("pathFont"))
-        'var = System.AppDomain.CurrentDomain.BaseDirectory & GetLocalResourceObject("pathFont")
-        'var = var
-
-
-        
+        Session("ctrl") = pnlBarcode
+        Page.ClientScript.RegisterStartupScript(Me.GetType(), "onclick", "<script language=javascript>window.open('PrintBarcode.aspx','PrintMe','height=300px,width=300px,scrollbars=1');</script>")
     End Sub
 
     Public Sub SelectPatient()

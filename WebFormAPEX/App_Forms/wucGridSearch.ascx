@@ -2,7 +2,7 @@
 <table>
     <tr>
         <td>
-            <asp:Button ID="btnBack" runat="server" Text="Back" />
+            <asp:Button ID="btnBack" name="wucPrincipalForm1_wucGridSearch1_GridSearch" runat="server" Text="Back" />
         </td>
     </tr>
     <tr><td><div>&nbsp;</div></td></tr>

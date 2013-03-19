@@ -11,12 +11,13 @@
     <script type="text/javascript" src="../js/formee.js"></script>
     <script type="text/javascript" src="../js/jquery-ui-1.10.2.custom.min.js"></script>
     <script type="text/javascript" src="../js/custom.js"></script>
-    <script type="text/javascript" src="../css/custom.css"></script>
 
     <link rel="stylesheet" href="../css/formee-structure.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="../js/chosen/chosen.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="../css/formee-style.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="../css/redmond/jquery-ui-1.10.2.custom.css"  />
+    <link rel="stylesheet" href="../css/custom.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="../css/table.css" type="text/css" media="screen"/>
 
     <style>
         .formee {
@@ -36,5 +37,6 @@
         <uc1:wucPrincipalForm ID = "wucPrincipalForm1" runat = "server"  />
         <input type="hidden" id="total_selects" name="total_selects"/>
     </form>
+
 </body>
 </html>

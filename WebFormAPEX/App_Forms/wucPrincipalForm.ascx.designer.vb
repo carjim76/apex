@@ -858,4 +858,31 @@ Partial Public Class wucPrincipalForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents wucGridSearch1 As Global.WebFormAPEX.wucGridSearch
+
+    '''<summary>
+    '''divBarcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents divBarcode As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pnlBarcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnlBarcode As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''imgBarcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents imgBarcode As Global.System.Web.UI.WebControls.Image
 End Class

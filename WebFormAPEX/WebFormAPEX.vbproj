@@ -80,6 +80,7 @@
   <ItemGroup>
     <Content Include="App_Forms\Images\btnNext.jpg" />
     <Content Include="App_Forms\Images\printer.gif" />
+    <Content Include="App_Forms\PrintBarcode.aspx" />
     <Content Include="App_Forms\SearchPatient.aspx" />
     <Content Include="App_Forms\wucCalendar.ascx" />
     <Content Include="App_Forms\wucContent.ascx" />
@@ -89,6 +90,7 @@
     <Content Include="App_Forms\wucRelationship.ascx" />
     <Content Include="App_Forms\wucState.ascx" />
     <Content Include="css\custom.css" />
+    <Content Include="css\table.css" />
     <Content Include="Default.aspx" />
     <Content Include="App_Forms\principalForm.aspx" />
     <Content Include="css\formee-structure.css" />
@@ -141,6 +143,16 @@
     <Content Include="App_Forms\wucPrincipalForm.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Forms\BarcodeGenerator.ashx.vb">
+      <DependentUpon>BarcodeGenerator.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Forms\PrintBarcode.aspx.designer.vb">
+      <DependentUpon>PrintBarcode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Forms\PrintBarcode.aspx.vb">
+      <DependentUpon>PrintBarcode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="App_Forms\SearchPatient.aspx.designer.vb">
       <DependentUpon>SearchPatient.aspx</DependentUpon>
     </Compile>
@@ -201,6 +213,7 @@
     <Compile Include="Code\DatDataBaseTransactions.vb" />
     <Compile Include="Code\DBConnect.vb" />
     <Compile Include="Code\MyTextBox.vb" />
+    <Compile Include="Code\PrintHelper.vb" />
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -257,6 +270,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Forms\BarcodeGenerator.ashx" />
     <None Include="Fonts\3OF9.TTF" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
