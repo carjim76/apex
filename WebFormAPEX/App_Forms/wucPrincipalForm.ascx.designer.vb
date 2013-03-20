@@ -41,6 +41,15 @@ Partial Public Class wucPrincipalForm
     Protected WithEvents ddlOrderingProvider As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''lblPrintBarcode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblPrintBarcode As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''printBC control.
     '''</summary>
     '''<remarks>
@@ -50,13 +59,22 @@ Partial Public Class wucPrincipalForm
     Protected WithEvents printBC As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
-    '''printReport control.
+    '''lblPrintRequisition control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents printReport As Global.System.Web.UI.WebControls.ImageButton
+    Protected WithEvents lblPrintRequisition As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnPrintRequisition control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnPrintRequisition As Global.System.Web.UI.WebControls.ImageButton
 
     '''<summary>
     '''lblPatienData control.
@@ -885,4 +903,31 @@ Partial Public Class wucPrincipalForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgBarcode As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
+    '''hdfPatientId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hdfPatientId As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hdfGuarantorId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hdfGuarantorId As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hdfInsuranceId control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hdfInsuranceId As Global.System.Web.UI.WebControls.HiddenField
 End Class

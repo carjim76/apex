@@ -30,6 +30,14 @@ ddlOrderingProvider control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPrintBarcode">
+	<summary>
+lblPrintBarcode control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:WebFormAPEX.wucPrincipalForm.printBC">
 	<summary>
 printBC control.
@@ -38,9 +46,17 @@ printBC control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.printReport">
+</member><member name="F:WebFormAPEX.wucPrincipalForm.lblPrintRequisition">
 	<summary>
-printReport control.
+lblPrintRequisition control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.btnPrintRequisition">
+	<summary>
+btnPrintRequisition control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -782,6 +798,30 @@ imgBarcode control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.hdfPatientId">
+	<summary>
+hdfPatientId control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.hdfGuarantorId">
+	<summary>
+hdfGuarantorId control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:WebFormAPEX.wucPrincipalForm.hdfInsuranceId">
+	<summary>
+hdfInsuranceId control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:WebFormAPEX.PrintBarcode.form1">
 	<summary>
 form1 control.
@@ -841,30 +881,6 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:WebFormAPEX.wucCalendar.Calendar1">
 	<summary>
 Calendar1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.SearchPatient.form1">
-	<summary>
-form1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.SearchPatient.btnBack">
-	<summary>
-btnBack control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.SearchPatient.wucGridSearch1">
-	<summary>
-wucGridSearch1 control.
 </summary>
 	<remarks>
 Auto-generated field.

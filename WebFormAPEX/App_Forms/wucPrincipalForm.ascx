@@ -50,10 +50,28 @@
                 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td>
-                            <asp:ImageButton ID="printBC" runat="server" ImageUrl="~/App_Forms/Images/printer.gif"/>
+                            <table>
+                                <tr>
+                                    <td align="left">
+                                        <asp:Label ID="lblPrintBarcode" runat="server" meta:resourcekey="titleLblPrintBarcodeResource"/>                                        
+                                    </td>
+                                    <td>
+                                        <asp:ImageButton ID="printBC" runat="server" ImageUrl="~/App_Forms/Images/printer.gif"/>
+                                    </td>
+                                </tr>
+                            </table>   
                         </td>
                         <td>
-                            <asp:ImageButton ID="printReport" runat="server" ImageUrl="~/App_Forms/Images/printer.gif"/>
+                            <table>
+                                <tr>
+                                    <td align="left">
+                                        <asp:Label ID="lblPrintRequisition" runat="server" meta:resourcekey="titleLblPrintRequisitionResource"/>                                        
+                                    </td>
+                                    <td>
+                                        <asp:ImageButton ID="btnPrintRequisition" runat="server" ImageUrl="~/App_Forms/Images/printer.gif"/>
+                                    </td>
+                                </tr>
+                            </table>   
                         </td>
                     </tr>
                 </table>
@@ -452,8 +470,10 @@
     </table>    
 </div>
 <div id="divBarcode" runat="server" visible="false">
-    <asp:Panel ID="pnlBarcode" runat="server" Height="500px" Width="1200px" >
-        <asp:Image runat="server" ID="imgBarcode" Visible="false" Height="400px" Width="1000px" />
+    <asp:Panel ID="pnlBarcode" runat="server">
+        <asp:Image runat="server" ID="imgBarcode" Visible="false"/>
     </asp:Panel>
 </div>
-
+<asp:HiddenField ID="hdfPatientId" runat="server"/>
+<asp:HiddenField ID="hdfGuarantorId" runat="server"/>
+<asp:HiddenField ID="hdfInsuranceId" runat="server"/>

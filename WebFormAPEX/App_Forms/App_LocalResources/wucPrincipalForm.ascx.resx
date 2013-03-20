@@ -225,4 +225,16 @@
   <data name="titleLblHourSpecimenCollectResource" xml:space="preserve">
     <value>Specimen Collect</value>
   </data>
+  <data name="titleLblPrintBarcodeResource.Text" xml:space="preserve">
+    <value>Print barcode</value>
+  </data>
+  <data name="titleLblPrintRequisitionResource.Text" xml:space="preserve">
+    <value>Print requisition</value>
+  </data>
+  <data name="MsErrorUpdate" xml:space="preserve">
+    <value>An error occurred while trying to update data</value>
+  </data>
+  <data name="MsSuccessUpdate" xml:space="preserve">
+    <value>The data was updated successfully</value>
+  </data>
 </root>

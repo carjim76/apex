@@ -1,6 +1,8 @@
 ﻿Partial Class wucGender
     Inherits System.Web.UI.UserControl
-
+#Region "Variables"
+    Private _lock As Boolean
+#End Region
 #Region "Properties"
     Public ReadOnly Property getDdlGenderValue() As Char
         Get
@@ -11,6 +13,15 @@
         Get
             Return ddlGender.SelectedItem.Text
         End Get
+    End Property
+
+    Public Property Enabled() As Boolean
+        Get
+            Return ddlGender.Enabled
+        End Get
+        Set(ByVal value As Boolean)
+            ddlGender.Enabled = value
+        End Set
     End Property
 #End Region
 

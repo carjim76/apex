@@ -11,20 +11,11 @@ Public Class wucPrincipalForm
     Dim dt As DataTable
     Private printer As New PrintDocument()
     Private myFont As Font
-    Private _flag As Integer
     Private _MedicalTestChain As String
+    Dim op As Integer
 
 #End Region
 #Region "Properties"
-    Public Property opDB() As Integer
-        Get
-            Return _flag
-        End Get
-        Set(ByVal value As Integer)
-            _flag = value
-        End Set
-    End Property
-
     Public Property MedicalTestChain() As String
         Get
             Return _MedicalTestChain
@@ -37,31 +28,25 @@ Public Class wucPrincipalForm
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         AddHandler wucGridSearch1.FillFormFields, AddressOf SelectPatient
         AddHandler wucGridSearch1.Back, AddressOf back
-        'opDB = 1
-       
 
         If Not Page.IsPostBack Then
             Me.divSearch.Visible = False
             loadHour()
             loadCatalogs()
-            opDB = 1
             getOrderNumber()
-            loadFont()
-            If Not myFont Is Nothing Then
-                'lblPatienData.Font = myFont
-            End If
-            '    MedicalTestChain = Is Nothing 
+            Session("option") = 1
         End If
     End Sub
 
     Protected Sub btnReset_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnReset.Click
         cleanForm()
         cleanVariables()
-        opDB = 1
+        FieldsEnable(True)
+        Session("option") = 1
     End Sub
     'Method to clean the form fields
     Public Sub cleanForm()
-        opDB = 1
+
         txtPDMRN.Text = ""
         txtPDFirstName.Text = ""
         txtPDMiddleName.Text = ""
@@ -165,6 +150,14 @@ Public Class wucPrincipalForm
     Public Sub collectDataOfForm()
         Try
             Dim strDate, strHour, strDateAndHour As String
+            op = Session("option")
+
+            If op = 2 Then
+                dbTransactions.PatientId = IIf(hdfPatientId.Value <> "", hdfPatientId.Value, 0)
+                dbTransactions.GuarantorId = IIf(hdfGuarantorId.Value <> "", hdfGuarantorId.Value, 0)
+                dbTransactions.InsuranceId = IIf(hdfInsuranceId.Value <> "", hdfInsuranceId.Value, 0)
+                dbTransactions.OrderId = IIf(txtPDOrder.Text <> "", txtPDOrder.Text, 0)
+            End If
 
             dbTransactions.PatientMRN = IIf(txtPDMRN.Text <> "", txtPDMRN.Text, 0)
             dbTransactions.PatientFirstname = IIf(txtPDFirstName.Text <> "", txtPDFirstName.Text, " ")
@@ -177,13 +170,6 @@ Public Class wucPrincipalForm
             dbTransactions.PatientCity = IIf(txtPDCity.Text <> "", txtPDCity.Text, " ")
             dbTransactions.PatientStateId = wucState1.getDdlStateValue
             dbTransactions.PatientZip = IIf(txtPDZip.Text <> "", txtPDZip.Text, " ")
-            dbTransactions.PatientOrderNumber = IIf(txtPDOrder.Text <> "", txtPDOrder.Text, " ")
-
-            strDate = IIf(txtPDDateSpecimenCollect.Text <> "", txtPDDateSpecimenCollect.Text, " ")
-            strHour = IIf(txtPDHourSpecimenCollectDate.Text <> "", txtPDHourSpecimenCollectDate.Text, " ")
-            strDateAndHour = strDate & " " & strHour
-            dbTransactions.PatientSpecimenCollect = IIf(txtPDDateSpecimenCollect.Text <> "", strDateAndHour, " ")
-            'dbTransactions.PatientSpecimenCollect = IIf(txtPDDateSpecimenCollect.Text <> "", txtPDDateSpecimenCollect.Text, " ")
 
             dbTransactions.GuarantorFirstname = IIf(txtGDFirstName.Text <> "", txtGDFirstName.Text, " ")
             dbTransactions.GuarantorMiddleName = txtGDMiddleName.Text
@@ -208,12 +194,18 @@ Public Class wucPrincipalForm
             dbTransactions.InsuranceStateId = wucState3.getDdlStateValue
             dbTransactions.InsuranceZip = IIf(txtIDZip.Text <> "", txtIDZip.Text, " ")
 
+            strDate = IIf(txtPDDateSpecimenCollect.Text <> "", txtPDDateSpecimenCollect.Text, " ")
+            strHour = IIf(txtPDHourSpecimenCollectDate.Text <> "", txtPDHourSpecimenCollectDate.Text, " ")
+            strDateAndHour = strDate & " " & strHour
+            dbTransactions.PatientSpecimenCollect = IIf(txtPDDateSpecimenCollect.Text <> "", strDateAndHour, " ")
+
             collectMedicalTest()
+
+            'FieldsEnable(True)
+
         Catch ex As Exception
 
         End Try
-
-
 
     End Sub
     'method that validates the required fields of the form
@@ -374,7 +366,29 @@ Public Class wucPrincipalForm
 
     Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubmit.Click
         'If opDB = 1 Then
-        insertNewPatien()
+        Dim result As Integer
+        Dim MsjAlert As String
+        op = Session("option")
+
+        If op = 1 Then
+            insertNewPatien()
+        Else
+            collectDataOfForm()
+            result = dbTransactions.patientDataUpdates
+            If result <> 0 Then
+                MsjAlert = "<script language='JavaScript'>" & _
+                "alert('" & GetLocalResourceObject("MsSuccessUpdate") & "')" & _
+                "</script>"
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
+            Else
+                MsjAlert = "<script language='JavaScript'>" & _
+                "alert('" & GetLocalResourceObject("MsErrorUpdate") & "')" & _
+                "</script>"
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "MsjAlert", MsjAlert)
+            End If
+
+        End If
+
         'Else
         'Response.Write("actualizar datos")
         'End If
@@ -432,12 +446,13 @@ Public Class wucPrincipalForm
         Dim ds As DataSet
         Dim dt As DataTable
 
+        Session("option") = 2
         collectDataOfForm()
 
         'ds = dbTransactions.searchData()
 
         'fillFormFields(ds)
-        opDB = 2
+
         dt = dbTransactions.SearchPatients
         'If dt.Rows.Count > 1 Then
         wucGridSearch1.Grid = dt
@@ -458,7 +473,7 @@ Public Class wucPrincipalForm
     Public Sub fillFormFields(ByVal ds As DataSet)
 
         Dim stringDate As Date
-
+        hdfPatientId.Value = ds.Tables(0).Rows(0)(0)
         txtPDMRN.Text = ds.Tables(0).Rows(0)(1)
         txtPDFirstName.Text = ds.Tables(0).Rows(0)(2)
         txtPDMiddleName.Text = ds.Tables(0).Rows(0)(3)
@@ -474,6 +489,7 @@ Public Class wucPrincipalForm
         wucState1.setValue(ds.Tables(0).Rows(0)(10))
         txtPDZip.Text = ds.Tables(0).Rows(0)(11)
 
+        hdfGuarantorId.Value = ds.Tables(1).Rows(0)(0)
         txtGDFirstName.Text = ds.Tables(1).Rows(0)(1)
         txtGDMiddleName.Text = ds.Tables(1).Rows(0)(2)
         txtGDLastName.Text = ds.Tables(1).Rows(0)(3)
@@ -486,6 +502,7 @@ Public Class wucPrincipalForm
         wucState2.setValue(ds.Tables(1).Rows(0)(9))
         txtGDZip.Text = ds.Tables(1).Rows(0)(10)
 
+        hdfInsuranceId.Value = ds.Tables(2).Rows(0)(0)
         txtIDFirstName.Text = ds.Tables(2).Rows(0)(1)
         txtIDMiddleName.Text = ds.Tables(2).Rows(0)(2)
         txtIDLastName.Text = ds.Tables(2).Rows(0)(3)
@@ -531,7 +548,7 @@ Public Class wucPrincipalForm
 
     Public Sub collectMedicalTest()
         Dim total As Integer
-        total = Request.Form("total_selects")
+        total = IIf(Request.Form("total_selects") <> "", Request.Form("total_selects"), 0)
 
         Dim testId As String
         Dim icd1 As String
@@ -596,8 +613,12 @@ Public Class wucPrincipalForm
         If MedicalTestChain IsNot Nothing Then
             MedicalTestChain = MedicalTestChain.Remove(MedicalTestChain.Length - 1, 1)
         End If
+        If MedicalTestChain IsNot Nothing Then
+            dbTransactions.MedicalTestChain = MedicalTestChain
+        Else
+            dbTransactions.MedicalTestChain = ""
+        End If
 
-        dbTransactions.MedicalTestChain = MedicalTestChain
     End Sub
     Public Sub getOrderNumber()
         Dim dt As DataTable
@@ -612,19 +633,6 @@ Public Class wucPrincipalForm
             txtPDOrder.Text = orderNumber + 1
         End If
 
-    End Sub
-    Private Sub loadFont()
-        Dim collectionOfFonts As New PrivateFontCollection()
-        Dim pathFont As String
-        pathFont = System.AppDomain.CurrentDomain.BaseDirectory & GetLocalResourceObject("pathFont")
-        'cargamos la fuente el archivo esta en Debug\bin
-        If File.Exists(pathFont) Then
-            collectionOfFonts.AddFontFile(pathFont)
-            Dim fontFamilies As FontFamily = collectionOfFonts.Families(0)
-            'llamamos al constructor de la clase font, donde le pasamos como 
-            'parametros la familia de fuentes y el tamaño que tendra la fuente
-            myFont = New Font(fontFamilies, 25)
-        End If
     End Sub
 
     Protected Sub printBC_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles printBC.Click
@@ -644,13 +652,11 @@ Public Class wucPrincipalForm
         fillFormFields(ds)
         Me.divForm.Visible = True
         Me.divSearch.Visible = False
+        FieldsEnable(False)
     End Sub
 
     Protected Sub btnMenu_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMenu.Click
-        ''Response.Redirect("SearchPatient.aspx?Grid")
-        ''Response.Redirect("SearchPatient.aspx/FillGrid")
-        Me.divForm.Visible = False
-        Me.divSearch.Visible = True
+        
     End Sub
 
     Public Sub cleanVariables()
@@ -666,9 +672,8 @@ Public Class wucPrincipalForm
         dbTransactions.PatientCity = ""
         dbTransactions.PatientStateId = ""
         dbTransactions.PatientZip = ""
-        dbTransactions.PatientOrderNumber = ""
-        dbTransactions.PatientSpecimenCollect = ""
 
+        dbTransactions.GuarantorId = 0
         dbTransactions.GuarantorFirstname = ""
         dbTransactions.GuarantorMiddleName = ""
         dbTransactions.GuarantorLastname = ""
@@ -680,6 +685,7 @@ Public Class wucPrincipalForm
         dbTransactions.GuarantorStateId = ""
         dbTransactions.GuarantorZip = ""
 
+        dbTransactions.InsuranceId = 0
         dbTransactions.InsurancePlan = ""
         dbTransactions.InsuranceFirstname = ""
         dbTransactions.InsuranceNiddleName = ""
@@ -691,6 +697,11 @@ Public Class wucPrincipalForm
         dbTransactions.InsuranceCity = ""
         dbTransactions.InsuranceStateId = ""
         dbTransactions.InsuranceZip = ""
+
+        dbTransactions.OrderId = 0
+        dbTransactions.PatientSpecimenCollect = ""
+        dbTransactions.MedicalTestChain = ""
+
     End Sub
     Public Sub loadHour()
         Dim time As DateTime = Now
@@ -737,5 +748,19 @@ Public Class wucPrincipalForm
     Public Sub back()
         Me.divForm.Visible = True
         Me.divSearch.Visible = False
+    End Sub
+
+    Public Sub FieldsEnable(ByVal lock As Boolean)
+
+        txtPDMRN.Enabled = lock
+        'txtPDFirstName.Enabled = lock
+        'txtPDMiddleName.Enabled = lock
+        'txtPDLastName.Enabled = lock
+        'wucGender1.Enabled = lock
+        'txtPDBirthday.Enabled = lock
+        'ddlPDEthnicity.Enabled = lock
+        'txtPDDateSpecimenCollect.Enabled = lock
+        'txtPDHourSpecimenCollectDate.Enabled = lock
+
     End Sub
 End Class

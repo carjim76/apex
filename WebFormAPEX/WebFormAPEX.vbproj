@@ -81,9 +81,7 @@
     <Content Include="App_Forms\Images\btnNext.jpg" />
     <Content Include="App_Forms\Images\printer.gif" />
     <Content Include="App_Forms\PrintBarcode.aspx" />
-    <Content Include="App_Forms\SearchPatient.aspx" />
     <Content Include="App_Forms\wucCalendar.ascx" />
-    <Content Include="App_Forms\wucContent.ascx" />
     <Content Include="App_Forms\wucGender.ascx" />
     <Content Include="App_Forms\wucGridSearch.ascx" />
     <Content Include="App_Forms\wucMedicalTest.ascx" />
@@ -153,25 +151,11 @@
       <DependentUpon>PrintBarcode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="App_Forms\SearchPatient.aspx.designer.vb">
-      <DependentUpon>SearchPatient.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Forms\SearchPatient.aspx.vb">
-      <DependentUpon>SearchPatient.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="App_Forms\wucCalendar.ascx.designer.vb">
       <DependentUpon>wucCalendar.ascx</DependentUpon>
     </Compile>
     <Compile Include="App_Forms\wucCalendar.ascx.vb">
       <DependentUpon>wucCalendar.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Forms\wucContent.ascx.designer.vb">
-      <DependentUpon>wucContent.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Forms\wucContent.ascx.vb">
-      <DependentUpon>wucContent.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Forms\wucGender.ascx.designer.vb">

@@ -9,7 +9,7 @@ Public Class DataBaseTransactions
 #Region "Variables"
     Private data As New DatDataBaseTransactions
     Private _flag As Integer
-    Private _medicalTestChain As String
+
 
 #Region "Patient Attributes"
     Private _patientId As Integer
@@ -24,10 +24,9 @@ Public Class DataBaseTransactions
     Private _patientCity As String
     Private _patientStateId As String
     Private _patientZip As String
-    Private _patientOrderNumber As String
-    Private _patientSpecimenCollect As String
 #End Region
 #Region "Guarantor Attributes"
+    Private _guarantorId As Integer
     Private _guarantorFirstname As String
     Private _guarantorMiddleName As String
     Private _guarantorLastname As String
@@ -40,6 +39,7 @@ Public Class DataBaseTransactions
     Private _guarantorZip As String
 #End Region
 #Region "Insurance Attributes"
+    Private _insuranceId As Integer
     Private _insurancePlan As String
     Private _insuranceFirstname As String
     Private _insuranceNiddleName As String
@@ -51,6 +51,11 @@ Public Class DataBaseTransactions
     Private _insuranceCity As String
     Private _insuranceStateId As String
     Private _insuranceZip As String
+#End Region
+#Region "Orders"
+    Private _orderId As Integer
+    Private _patientSpecimenCollect As String
+    Private _medicalTestChain As String
 #End Region
 #End Region
 
@@ -64,14 +69,7 @@ Public Class DataBaseTransactions
         End Set
     End Property
 
-    Public Property MedicalTestChain() As String
-        Get
-            Return _medicalTestChain
-        End Get
-        Set(ByVal value As String)
-            _medicalTestChain = value
-        End Set
-    End Property
+    
 
 #Region "Patient Properties"
 
@@ -171,24 +169,16 @@ Public Class DataBaseTransactions
             _patientZip = value
         End Set
     End Property
-    Public Property PatientOrderNumber() As String
-        Get
-            Return _patientOrderNumber
-        End Get
-        Set(ByVal value As String)
-            _patientOrderNumber = value
-        End Set
-    End Property
-    Public Property PatientSpecimenCollect() As String
-        Get
-            Return _patientSpecimenCollect
-        End Get
-        Set(ByVal value As String)
-            _patientSpecimenCollect = value
-        End Set
-    End Property
 #End Region
 #Region "Guarantor Properties"
+    Public Property GuarantorId() As Integer
+        Get
+            Return _guarantorId
+        End Get
+        Set(ByVal value As Integer)
+            _guarantorId = value
+        End Set
+    End Property
     Public Property GuarantorFirstname() As String
         Get
             Return _guarantorFirstname
@@ -271,6 +261,14 @@ Public Class DataBaseTransactions
     End Property
 #End Region
 #Region "Insurance Properties"
+    Public Property InsuranceId() As Integer
+        Get
+            Return _insuranceId
+        End Get
+        Set(ByVal value As Integer)
+            _insuranceId = value
+        End Set
+    End Property
     Public Property InsurancePlan() As String
         Get
             Return _insurancePlan
@@ -360,6 +358,32 @@ Public Class DataBaseTransactions
         End Set
     End Property
 #End Region
+#Region "Orders"
+    Public Property OrderId() As Integer
+        Get
+            Return _orderId
+        End Get
+        Set(ByVal value As Integer)
+            _orderId = value
+        End Set
+    End Property
+    Public Property PatientSpecimenCollect() As String
+        Get
+            Return _patientSpecimenCollect
+        End Get
+        Set(ByVal value As String)
+            _patientSpecimenCollect = value
+        End Set
+    End Property
+    Public Property MedicalTestChain() As String
+        Get
+            Return _medicalTestChain
+        End Get
+        Set(ByVal value As String)
+            _medicalTestChain = value
+        End Set
+    End Property
+#End Region
 #End Region
 
 #Region "Constructors"
@@ -378,7 +402,6 @@ Public Class DataBaseTransactions
         Me._patientCity = info.GetValue("_patientCity", GetType(String))
         Me._patientStateId = info.GetValue("_patientStateId", GetType(String))
         Me._patientZip = info.GetValue("_patientZip", GetType(String))
-        Me._patientOrderNumber = info.GetValue("_patientOrderNumber", GetType(String))
         Me._patientSpecimenCollect = info.GetValue("_patientSpecimenCollect", GetType(String))
         Me._guarantorFirstname = info.GetValue("_guarantorFirstname", GetType(String))
         Me._guarantorMiddleName = info.GetValue("_guarantorMiddleName", GetType(String))
@@ -404,6 +427,9 @@ Public Class DataBaseTransactions
         Me._flag = info.GetValue("_flag", GetType(Integer))
         Me._medicalTestChain = info.GetValue("_medicalTestChain", GetType(String))
         Me._patientId = info.GetValue("_patientId", GetType(Integer))
+        Me._guarantorId = info.GetValue("_guarantorId", GetType(Integer))
+        Me._insuranceId = info.GetValue("_insuranceId", GetType(Integer))
+        Me._orderId = info.GetValue("_orderId", GetType(Integer))
     End Sub
 #End Region
 
@@ -419,7 +445,6 @@ Public Class DataBaseTransactions
         info.AddValue("_patientCity", _patientCity)
         info.AddValue("_patientStateId", _patientStateId)
         info.AddValue("_patientZip", _patientZip)
-        info.AddValue("_patientOrderNumber", _patientOrderNumber)
         info.AddValue("_patientSpecimenCollect", _patientSpecimenCollect)
         info.AddValue("_guarantorFirstname", _guarantorFirstname)
         info.AddValue("_guarantorMiddleName", _guarantorMiddleName)
@@ -445,6 +470,9 @@ Public Class DataBaseTransactions
         info.AddValue("_flag", _flag)
         info.AddValue("_medicalTestChain", _medicalTestChain)
         info.AddValue("_patientId", _patientId)
+        info.AddValue("_guarantorId", _guarantorId)
+        info.AddValue("_insuranceId", _insuranceId)
+        info.AddValue("_orderId", _orderId)
     End Sub
 
     'Function that fills the catalogs of the web application
@@ -456,8 +484,8 @@ Public Class DataBaseTransactions
 
     Public Function dataProcessing()
         Dim result = data.dataProcessing(PatientMRN, PatientFirstname, PatientMiddleName, PatientLastname, PatientGender, PatientDOB, _
-                                           PatientEthnicityId, PatientAddress, PatientCity, PatientStateId, PatientZip, PatientOrderNumber, _
-                                           PatientSpecimenCollect, GuarantorFirstname, GuarantorMiddleName, GuarantorLastname, GuarantorGender, GuarantorDOB, _
+                                           PatientEthnicityId, PatientAddress, PatientCity, PatientStateId, PatientZip, PatientSpecimenCollect, _
+                                           GuarantorFirstname, GuarantorMiddleName, GuarantorLastname, GuarantorGender, GuarantorDOB, _
                                            GuarantorRelationshipId, GuarantorAddress, GuarantorCity, GuarantorStateId, GuarantorZip, InsurancePlan, _
                                            InsuranceFirstname, InsuranceNiddleName, InsuranceLastname, InsuranceGender, InsuranceDOB, InsuranceRelationshipId, _
                                            InsuranceAddress, InsuranceCity, InsuranceStateId, InsuranceZip, MedicalTestChain)
@@ -492,5 +520,16 @@ Public Class DataBaseTransactions
         Dim ds As DataSet = New DataSet
         ds = data.searchDataByPatientId(PatientId)
         Return ds
+    End Function
+
+    Public Function patientDataUpdates() As Integer
+        Dim result As Integer
+        result = data.PatientDataUpdates(PatientId, PatientFirstname, PatientMiddleName, PatientLastname, PatientGender, PatientDOB, _
+                                         PatientEthnicityId, PatientAddress, PatientCity, PatientStateId, PatientZip, PatientSpecimenCollect, _
+                                         GuarantorId, GuarantorFirstname, GuarantorMiddleName, GuarantorLastname, GuarantorGender, GuarantorDOB, _
+                                         GuarantorRelationshipId, GuarantorAddress, GuarantorCity, GuarantorStateId, GuarantorZip, InsuranceId, _
+                                         InsurancePlan, InsuranceFirstname, InsuranceNiddleName, InsuranceLastname, InsuranceGender, InsuranceDOB, _
+                                         InsuranceRelationshipId, InsuranceAddress, InsuranceCity, InsuranceStateId, InsuranceZip, OrderId, MedicalTestChain)
+        Return result
     End Function
 End Class
