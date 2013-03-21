@@ -256,6 +256,8 @@
   <ItemGroup>
     <Content Include="App_Forms\BarcodeGenerator.ashx" />
     <None Include="Fonts\3OF9.TTF" />
+    <None Include="Fonts\3OF9_NEW.TTF" />
+    <None Include="Fonts\FRE3OF9X.TTF" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -22,9 +22,9 @@ Public Class BarcodeGenerator1
         'fm = context.Request.QueryString.Get("format")
 
         'dim width = (!string.IsNullOrEmpty(context.Request.QueryString.Get("width"))))? int.Parse(context.Request.QueryString.Get("width")): 200
-        width = IIf(Not String.IsNullOrEmpty(context.Request.QueryString.Get("width")), CType(context.Request.QueryString.Get("width"), Integer), 200)
-        height = IIf(Not String.IsNullOrEmpty(context.Request.QueryString.Get("height")), CType(context.Request.QueryString.Get("height"), Integer), 60)
-        size = IIf(Not String.IsNullOrEmpty(context.Request.QueryString.Get("size")), CType(context.Request.QueryString.Get("size"), Integer), 60)
+        width = IIf(Not String.IsNullOrEmpty(context.Request.QueryString.Get("width")), CType(context.Request.QueryString.Get("width"), Integer), 300)
+        height = IIf(Not String.IsNullOrEmpty(context.Request.QueryString.Get("height")), CType(context.Request.QueryString.Get("height"), Integer), 200)
+        size = IIf(Not String.IsNullOrEmpty(context.Request.QueryString.Get("size")), CType(context.Request.QueryString.Get("size"), Integer), 200)
 
         If Not String.IsNullOrEmpty(cd) Then
             Using (New System.IO.MemoryStream())
@@ -36,7 +36,7 @@ Public Class BarcodeGenerator1
                 Dim brush = New SolidBrush(Color.Black)
 
                 grafic.FillRectangle(New SolidBrush(Color.White), 0, 0, width, height)
-                grafic.DrawString(FormatBarCode(cd), font, brush, point)
+                grafic.DrawString(FormatBarCode(cd), font, brush, 30, 30)
                 context.Response.ContentType = "image/jpeg"
                 bitmap.Save(context.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg)
             End Using
@@ -50,10 +50,10 @@ Public Class BarcodeGenerator1
         Dim collectionOfFonts As New PrivateFontCollection()
         Dim pathFont As String
 
-        pathFont = System.AppDomain.CurrentDomain.BaseDirectory & "Fonts\3OF9.TTF"
+        pathFont = System.AppDomain.CurrentDomain.BaseDirectory & "Fonts\3OF9_NEW.TTF"
         collectionOfFonts.AddFontFile(pathFont)
 
-        Return New Font(collectionOfFonts.Families(0), 15)
+        Return New Font(collectionOfFonts.Families(0), 36)
     End Function
 
     Private Function FormatBarCode(ByVal code As String) As String

@@ -1,7 +1,8 @@
 ﻿Imports System.Drawing.Text
 Imports System.Drawing.Printing
 Imports System.Drawing
-Imports System.IO
+Imports System.Web.UI.WebControls.Image
+'Imports System.contr
 
 Public Class wucPrincipalForm
     Inherits System.Web.UI.UserControl
@@ -12,10 +13,20 @@ Public Class wucPrincipalForm
     Private printer As New PrintDocument()
     Private myFont As Font
     Private _MedicalTestChain As String
+    Private _insertNewTest As String
     Dim op As Integer
 
 #End Region
 #Region "Properties"
+    Public Property InsertNewTest() As String
+        Get
+            Return _insertNewTest
+        End Get
+        Set(ByVal value As String)
+            _insertNewTest = value
+        End Set
+    End Property
+
     Public Property MedicalTestChain() As String
         Get
             Return _MedicalTestChain
@@ -24,7 +35,98 @@ Public Class wucPrincipalForm
             _MedicalTestChain = value
         End Set
     End Property
+
+    'dinamics webcontrols
+    Public Property DropDownSelectValues() As DataTable
+        Get
+            Return IIf(Session("DropDownSelectValues") Is Nothing, _
+                       New DataTable("DropDownSelectValues"), _
+                       CType(Session("DropDownSelectValues"), DataTable))
+        End Get
+        Set(ByVal value As DataTable)
+            Session("DropDownSelectValues") = value
+        End Set
+    End Property
+
+    'dinamics webcontrols
+    Public Property DropDownsDataInMemory() As DataTable
+        Get
+            Dim dtDropDownsData As DataTable
+
+            If Session("DropDownsData") IsNot Nothing Then
+                dtDropDownsData = CType(Session("DropDownsData"), DataTable)
+            Else
+                dtDropDownsData = New DataTable("DropDownsData")
+
+                'DropDown id
+                Dim dcIdDropDown As New DataColumn
+                dcIdDropDown.AllowDBNull = False
+                dcIdDropDown.AutoIncrement = True
+                dcIdDropDown.ColumnName = "Id"
+                dcIdDropDown.DataType = Type.GetType("System.Int32")
+
+                'Add the first column to maintain the dropdown id.
+                dtDropDownsData.Columns.Add(dcIdDropDown)
+
+                'DropDown value
+                Dim dcValueDropDown As New DataColumn
+                dcValueDropDown.ColumnName = "Value"
+                dcValueDropDown.DataType = Type.GetType("System.String")
+
+                'Add the Second column to maintain the dropdown value.
+                dtDropDownsData.Columns.Add(dcValueDropDown)
+
+                'ICD1 value
+                Dim dcValueicd1 As New DataColumn
+                dcValueicd1.ColumnName = "icd1"
+                dcValueicd1.DataType = Type.GetType("System.String")
+
+                'Add the third column to maintain the icd1 value.
+                dtDropDownsData.Columns.Add(dcValueicd1)
+
+                'ICD2 value
+                Dim dcValueicd2 As New DataColumn
+                dcValueicd2.ColumnName = "icd2"
+                dcValueicd2.DataType = Type.GetType("System.String")
+
+                'Add the fourth column to maintain the icd2 value.
+                dtDropDownsData.Columns.Add(dcValueicd2)
+
+                'ICD3 value
+                Dim dcValueicd3 As New DataColumn
+                dcValueicd3.ColumnName = "icd3"
+                dcValueicd3.DataType = Type.GetType("System.String")
+
+                'Add the fifth column to maintain the icd3 value.
+                dtDropDownsData.Columns.Add(dcValueicd3)
+
+                'ICD4 value
+                Dim dcValueicd4 As New DataColumn
+                dcValueicd4.ColumnName = "icd4"
+                dcValueicd4.DataType = Type.GetType("System.String")
+
+                'Add the fifth column to maintain the icd3 value.
+                dtDropDownsData.Columns.Add(dcValueicd4)
+
+                Dim drDefault As DataRow = dtDropDownsData.NewRow
+                drDefault("Value") = "-1"
+                drDefault("icd1") = ""
+                drDefault("icd2") = ""
+                drDefault("icd3") = ""
+                drDefault("icd4") = ""
+
+                dtDropDownsData.Rows.Add(drDefault)
+                dtDropDownsData.AcceptChanges()
+
+            End If
+            Return dtDropDownsData
+        End Get
+        Set(ByVal value As DataTable)
+            Session("DropDownsData") = value
+        End Set
+    End Property
 #End Region
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         AddHandler wucGridSearch1.FillFormFields, AddressOf SelectPatient
         AddHandler wucGridSearch1.Back, AddressOf back
@@ -35,7 +137,133 @@ Public Class wucPrincipalForm
             loadCatalogs()
             getOrderNumber()
             Session("option") = 1
+
+            'dinamics webcontrols
+            BindDropDowns()
+            ClearDropdowns()
         End If
+
+    End Sub
+    'dinamics webcontrols
+    Protected Sub rptDropDowns_ItemDataBound(ByVal sender As Object, _
+                                             ByVal e As RepeaterItemEventArgs) Handles rptDropDowns.ItemDataBound
+        '
+        If e.Item.ItemType = ListItemType.Item Or e.Item.ItemType = ListItemType.AlternatingItem Then
+            Dim ddlMedicalTest As DropDownList = CType(e.Item.FindControl("ddlMedicalTest"), DropDownList)
+            Dim txtICD1 As TextBox = CType(e.Item.FindControl("txtICD1"), TextBox)
+            Dim txtICD2 As TextBox = CType(e.Item.FindControl("txtICD2"), TextBox)
+            Dim txtICD3 As TextBox = CType(e.Item.FindControl("txtICD3"), TextBox)
+            Dim txtICD4 As TextBox = CType(e.Item.FindControl("txtICD4"), TextBox)
+
+            If Not ddlMedicalTest Is Nothing Then
+                ddlMedicalTest.DataSource = DropDownSelectValues
+                ddlMedicalTest.DataTextField = "test_name"
+                ddlMedicalTest.DataValueField = "test_name_id"
+                ddlMedicalTest.DataBind()
+                'Default value
+                ddlMedicalTest.Items.Insert(0, New ListItem(GetLocalResourceObject("selectMedicalTest").ToString, "-1"))
+
+                'Select the correct value stored in memory table.
+                Dim SelectedValue As String = CType(e.Item.DataItem, DataRowView)("Value")
+                Dim Icd1Text As String = CType(e.Item.DataItem, DataRowView)("icd1")
+                Dim Icd2Text As String = CType(e.Item.DataItem, DataRowView)("icd2")
+                Dim Icd3Text As String = CType(e.Item.DataItem, DataRowView)("icd3")
+                Dim Icd4Text As String = CType(e.Item.DataItem, DataRowView)("icd4")
+
+                If Not ddlMedicalTest.Items.FindByValue(SelectedValue) Is Nothing Then
+                    ddlMedicalTest.SelectedValue = SelectedValue
+                    txtICD1.Text = Icd1Text
+                    txtICD2.Text = Icd2Text
+                    txtICD3.Text = Icd3Text
+                    txtICD4.Text = Icd4Text
+                End If
+
+            End If
+        End If
+    End Sub
+
+    'dinamics webcontrols
+    Protected Sub ddlMedicalTest_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
+
+        Dim DropwDownId As String = CType(CType(sender, DropDownList).Parent.FindControl("hdnId"), HiddenField).Value
+        Dim DropDownValue As String = CType(sender, DropDownList).SelectedValue
+
+        Dim Icd1Value As String = CType(CType(sender, DropDownList).Parent.FindControl("txtICD1"), TextBox).Text
+        Dim Icd2Value As String = CType(CType(sender, DropDownList).Parent.FindControl("txtICD2"), TextBox).Text
+        Dim Icd3Value As String = CType(CType(sender, DropDownList).Parent.FindControl("txtICD3"), TextBox).Text
+        Dim Icd4Value As String = CType(CType(sender, DropDownList).Parent.FindControl("txtICD4"), TextBox).Text
+
+        If DropDownValue <> -1 Then
+            'Save current selected value in dropdown
+            Dim dtTempo As DataTable = DropDownsDataInMemory
+            dtTempo.Rows(Convert.ToInt32(DropwDownId))("Value") = DropDownValue
+            dtTempo.Rows(Convert.ToInt32(DropwDownId))("icd1") = Icd1Value
+            dtTempo.Rows(Convert.ToInt32(DropwDownId))("icd2") = Icd2Value
+            dtTempo.Rows(Convert.ToInt32(DropwDownId))("icd3") = Icd3Value
+            dtTempo.Rows(Convert.ToInt32(DropwDownId))("icd4") = Icd4Value
+            dtTempo.AcceptChanges()
+            DropDownsDataInMemory = dtTempo
+
+            'update DropDownsDataInMemory with icd's data
+            LoadDataICDS()
+
+            'determine if a DropDown control must be added
+            AddNewDropDown(DropwDownId)
+        End If
+
+    End Sub
+    Sub LoadDataICDS()
+        For i As Integer = 0 To DropDownsDataInMemory.Rows.Count - 1
+
+            Dim dtTempo As DataTable = DropDownsDataInMemory
+            Dim num As String = ""
+
+            num = IIf(i < 10, "0" & i, i)
+
+            dtTempo.Rows(Convert.ToInt32(i))("icd1") = Request.Form("wucPrincipalForm1$rptDropDowns$ctl" & num & "$txtICD1")
+            dtTempo.Rows(Convert.ToInt32(i))("icd2") = Request.Form("wucPrincipalForm1$rptDropDowns$ctl" & num & "$txtICD2")
+            dtTempo.Rows(Convert.ToInt32(i))("icd3") = Request.Form("wucPrincipalForm1$rptDropDowns$ctl" & num & "$txtICD3")
+            dtTempo.Rows(Convert.ToInt32(i))("icd4") = Request.Form("wucPrincipalForm1$rptDropDowns$ctl" & num & "$txtICD4")
+            dtTempo.AcceptChanges()
+            DropDownsDataInMemory = dtTempo
+
+        Next
+    End Sub
+    'dinamics webcontrols
+    Sub AddNewDropDown(ByVal id As String)
+        'logica para agregar un nuevo DropDown
+        Dim dvFilter As New DataView(DropDownsDataInMemory)
+        dvFilter.RowFilter = String.Format("Id = {0}", id)
+        If Not dvFilter.ToTable().Rows.Count.Equals(0) AndAlso _
+            DropDownsDataInMemory.Rows(DropDownsDataInMemory.Rows.Count - 1)("Id").ToString().Equals(id) Then
+            Dim drNewDropDown As DataRow = DropDownsDataInMemory.NewRow()
+            drNewDropDown("Value") = "-1"
+            drNewDropDown("icd1") = ""
+            drNewDropDown("icd2") = ""
+            drNewDropDown("icd3") = ""
+            drNewDropDown("icd4") = ""
+            DropDownsDataInMemory.Rows.Add(drNewDropDown)
+            DropDownsDataInMemory.AcceptChanges()
+        End If
+        BindDropDowns()
+    End Sub
+
+    'dinamics webcontrols
+    Function GetDataDropDowns() As DataTable
+
+        Return DropDownsDataInMemory
+
+    End Function
+
+    'dinamics webcontrols
+    Sub BindDropDowns()
+        rptDropDowns.DataSource = GetDataDropDowns()
+        rptDropDowns.DataBind()
+    End Sub
+    'dinamics webcontrols
+    Sub ClearDropdowns()
+        DropDownsDataInMemory = Nothing
+        BindDropDowns()
     End Sub
 
     Protected Sub btnReset_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnReset.Click
@@ -43,6 +271,7 @@ Public Class wucPrincipalForm
         cleanVariables()
         FieldsEnable(True)
         Session("option") = 1
+        btnSubmit.Text = "SUBMIT"
     End Sub
     'Method to clean the form fields
     Public Sub cleanForm()
@@ -81,14 +310,14 @@ Public Class wucPrincipalForm
         txtIDGroup.Text = ""
         txtIDPolicy.Text = ""
 
-        txtICD11.Text = ""
-        txtICD12.Text = ""
-        txtICD13.Text = ""
-        txtICD14.Text = ""
-        txtICD21.Text = ""
-        txtICD22.Text = ""
-        txtICD23.Text = ""
-        txtICD24.Text = ""
+        'txtICD11.Text = ""
+        'txtICD12.Text = ""
+        'txtICD13.Text = ""
+        'txtICD14.Text = ""
+        'txtICD21.Text = ""
+        'txtICD22.Text = ""
+        'txtICD23.Text = ""
+        'txtICD24.Text = ""
 
         wucGender1.cleanValues()
         wucGender2.cleanValues()
@@ -102,8 +331,8 @@ Public Class wucPrincipalForm
         ddlPDEthnicity.SelectedIndex = 0
         ddlOrderingProvider.SelectedIndex = 0
 
-        ddlMedicalTest1.SelectedIndex = 0
-        ddlMedicalTest2.SelectedIndex = 0
+        'ddlMedicalTest1.SelectedIndex = 0
+        'ddlMedicalTest2.SelectedIndex = 0
 
         lblOrderingProvider.ForeColor = Drawing.Color.Black
 
@@ -144,6 +373,8 @@ Public Class wucPrincipalForm
         wucRelationship2.changeColorTitle(2)
 
         wucState3.changeColorTitle(2)
+
+        ClearDropdowns()
 
     End Sub
     'Method that collects form data and save it in database
@@ -201,8 +432,6 @@ Public Class wucPrincipalForm
 
             collectMedicalTest()
 
-            'FieldsEnable(True)
-
         Catch ex As Exception
 
         End Try
@@ -255,20 +484,6 @@ Public Class wucPrincipalForm
         Else
             wucState1.changeColorTitle(2)
         End If
-
-        If ddlMedicalTest1.SelectedValue = -1 Then
-            flag = False
-            lblTest.ForeColor = Drawing.Color.Red
-        Else
-            lblTest.ForeColor = Drawing.Color.Black
-        End If
-
-        'If wucMedicalTest2.getDdlMedicalTestValue = -1 Then
-        '    flag = False
-        '    lblTest.ForeColor = Drawing.Color.Red
-        'Else
-        '    lblTest.ForeColor = Drawing.Color.Black
-        'End If
 
         If txtGDFirstName.Text = "" Then
             flag = False
@@ -351,17 +566,23 @@ Public Class wucPrincipalForm
         ddlOrderingProvider.DataBind()
         ddlOrderingProvider.Items.Insert(0, New ListItem(GetLocalResourceObject("selectProvider").ToString, "-1"))
 
-        ddlMedicalTest1.DataSource = ds.Tables(4)
-        ddlMedicalTest1.DataValueField = ds.Tables(4).Columns(0).ToString
-        ddlMedicalTest1.DataTextField = ds.Tables(4).Columns(1).ToString
-        ddlMedicalTest1.DataBind()
-        ddlMedicalTest1.Items.Insert(0, New ListItem(GetLocalResourceObject("selectMedicalTest").ToString, "-1"))
+        'ddlMedicalTest1.DataSource = ds.Tables(4)
+        'ddlMedicalTest1.DataValueField = ds.Tables(4).Columns(0).ToString
+        'ddlMedicalTest1.DataTextField = ds.Tables(4).Columns(1).ToString
+        'ddlMedicalTest1.DataBind()
+        'ddlMedicalTest1.Items.Insert(0, New ListItem(GetLocalResourceObject("selectMedicalTest").ToString, "-1"))
 
-        ddlMedicalTest2.DataSource = ds.Tables(4)
-        ddlMedicalTest2.DataValueField = ds.Tables(4).Columns(0).ToString
-        ddlMedicalTest2.DataTextField = ds.Tables(4).Columns(1).ToString
-        ddlMedicalTest2.DataBind()
-        ddlMedicalTest2.Items.Insert(0, New ListItem(GetLocalResourceObject("selectMedicalTest").ToString, "-1"))
+        'ddlMedicalTest2.DataSource = ds.Tables(4)
+        'ddlMedicalTest2.DataValueField = ds.Tables(4).Columns(0).ToString
+        'ddlMedicalTest2.DataTextField = ds.Tables(4).Columns(1).ToString
+        'ddlMedicalTest2.DataBind()
+        'ddlMedicalTest2.Items.Insert(0, New ListItem(GetLocalResourceObject("selectMedicalTest").ToString, "-1"))
+
+        'dinamics webcontrols
+        If ds.Tables.Count > 4 Then
+            DropDownSelectValues = ds.Tables(4)
+        End If
+
     End Sub
 
     Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubmit.Click
@@ -370,9 +591,13 @@ Public Class wucPrincipalForm
         Dim MsjAlert As String
         op = Session("option")
 
+        LoadDataICDS()
+
         If op = 1 Then
+
             insertNewPatien()
         Else
+
             collectDataOfForm()
             result = dbTransactions.patientDataUpdates
             If result <> 0 Then
@@ -389,57 +614,7 @@ Public Class wucPrincipalForm
 
         End If
 
-        'Else
-        'Response.Write("actualizar datos")
-        'End If
-
-
-
-
-        ' '' '' ''<%
-        ' '' '' ''declare the variables that will receive the values 
-        '' '' ''Dim tes1, tes2, test3 As String
-        '' '' ''Dim total As Integer
-        ' '' '' ''receive the values sent from the form and assign them to variables
-        ' '' '' ''note that request.form("name") will receive the value entered 
-        ' '' '' ''into the textfield called name
-        '' '' ''total = Request.Form("total_selects")
-
-        '' '' ''tes1 = Request.Form("wucPrincipalForm1$ddlMedicalTest1")
-        '' '' ''tes2 = Request.Form("wucPrincipalForm1$ddlMedicalTest2")
-        '' '' ''test3 = Request.Form("wucPrincipalForm1$ddlMedicalTest3")
-
-        ' '' '' ''lblGDAddress.Text = tes1
-        ' '' '' ''lblGDFirstName.Text = tes2
-        ' '' '' ''lblGuarantorData.Text = test3
-
-        ' '' '' ''let's now print out the received values in the browser  wucPrincipalForm1$DropDownList3
-        '' '' ''Response.Write("Name: " & tes1 & "<br>")
-        '' '' ''Response.Write("E-mail: " & tes2 & "<br>")
-        '' '' ''Response.Write("Comments: " & test3 & "<br>")
-
-        '' '' ''Response.Write("tatal: " & total & "<br>")
-
-        '' '' ''Dim i As Integer
-        '' '' ''Dim var As String
-        '' '' ''Dim v1, v2, v3, v4 As String
-        '' '' ''For i = 1 To total
-        '' '' ''    var = Request.Form("wucPrincipalForm1$ddlMedicalTest" & i)
-        '' '' ''    v1 = Request.Form("wucPrincipalForm1$TextBox" & i & "1")
-        '' '' ''    v2 = Request.Form("wucPrincipalForm1$TextBox" & i & "2")
-        '' '' ''    v3 = Request.Form("wucPrincipalForm1$TextBox" & i & "3")
-        '' '' ''    v4 = Request.Form("wucPrincipalForm1$TextBox" & i & "4")
-
-        '' '' ''    Response.Write("value combobox " & i & ": " & var & "<br>")
-
-        '' '' ''    Response.Write("value icd1" & i & ": " & v1 & "<br>")
-        '' '' ''    Response.Write("value icd2" & i & ":" & v2 & "<br>")
-        '' '' ''    Response.Write("value icd3" & i & ":" & v3 & "<br>")
         '' '' ''    Response.Write("value icd4" & i & ":" & v4 & "<br>")
-
-        '' '' ''Next
-
-        ' '' '' ''%>
     End Sub
 
     Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearch.Click
@@ -468,6 +643,7 @@ Public Class wucPrincipalForm
         'End If
         Me.divForm.Visible = False
         Me.divSearch.Visible = True
+        btnSubmit.Text = "UPDATE"
     End Sub
 
     Public Sub fillFormFields(ByVal ds As DataSet)
@@ -503,9 +679,9 @@ Public Class wucPrincipalForm
         txtGDZip.Text = ds.Tables(1).Rows(0)(10)
 
         hdfInsuranceId.Value = ds.Tables(2).Rows(0)(0)
-        txtIDFirstName.Text = ds.Tables(2).Rows(0)(1)
-        txtIDMiddleName.Text = ds.Tables(2).Rows(0)(2)
-        txtIDLastName.Text = ds.Tables(2).Rows(0)(3)
+        txtInsurancePlan.Text = ds.Tables(2).Rows(0)(1)
+        txtIDFirstName.Text = ds.Tables(2).Rows(0)(2)
+        txtIDMiddleName.Text = ds.Tables(2).Rows(0)(3)
         txtIDLastName.Text = ds.Tables(2).Rows(0)(4)
         wucGender3.setValue(ds.Tables(2).Rows(0)(5))
         stringDate = CType(ds.Tables(2).Rows(0)(6), DateTime)
@@ -515,109 +691,90 @@ Public Class wucPrincipalForm
         txtIDCity.Text = ds.Tables(2).Rows(0)(9)
         wucState3.setValue(ds.Tables(2).Rows(0)(10))
         txtIDZip.Text = ds.Tables(2).Rows(0)(11)
+        txtIDGroup.Text = ""
+        txtIDPolicy.Text = ""
 
         txtPDOrder.Text = ds.Tables(3).Rows(0)(0)
         stringDate = CType(ds.Tables(3).Rows(0)(1), DateTime)
         txtPDDateSpecimenCollect.Text = stringDate.ToString("MM/dd/yyyy")
         txtPDHourSpecimenCollectDate.Text = stringDate.ToString("HH:mm")
 
-        If ds.Tables(4).Rows.Count = 1 Then
-            txtICD11.Text = IIf(ds.Tables(4).Rows(0)(1) Is DBNull.Value, "", ds.Tables(4).Rows(0)(1))
-            txtICD12.Text = IIf(ds.Tables(4).Rows(0)(2) Is DBNull.Value, "", ds.Tables(4).Rows(0)(2))
-            txtICD13.Text = IIf(ds.Tables(4).Rows(0)(3) Is DBNull.Value, "", ds.Tables(4).Rows(0)(3))
-            txtICD14.Text = IIf(ds.Tables(4).Rows(0)(4) Is DBNull.Value, "", ds.Tables(4).Rows(0)(4))
-            ddlMedicalTest1.SelectedValue = ds.Tables(4).Rows(0)(5)
-        End If
-
-        If ds.Tables(4).Rows.Count >= 2 Then
-            txtICD11.Text = IIf(ds.Tables(4).Rows(0)(1) Is DBNull.Value, "", ds.Tables(4).Rows(0)(1))
-            txtICD12.Text = IIf(ds.Tables(4).Rows(0)(2) Is DBNull.Value, "", ds.Tables(4).Rows(0)(2))
-            txtICD13.Text = IIf(ds.Tables(4).Rows(0)(3) Is DBNull.Value, "", ds.Tables(4).Rows(0)(3))
-            txtICD14.Text = IIf(ds.Tables(4).Rows(0)(4) Is DBNull.Value, "", ds.Tables(4).Rows(0)(4))
-            ddlMedicalTest1.SelectedValue = ds.Tables(4).Rows(0)(5)
-
-            txtICD21.Text = IIf(ds.Tables(4).Rows(1)(1) Is DBNull.Value, "", ds.Tables(4).Rows(1)(1))
-            txtICD22.Text = IIf(ds.Tables(4).Rows(1)(2) Is DBNull.Value, "", ds.Tables(4).Rows(1)(2))
-            txtICD23.Text = IIf(ds.Tables(4).Rows(1)(3) Is DBNull.Value, "", ds.Tables(4).Rows(1)(3))
-            txtICD24.Text = IIf(ds.Tables(4).Rows(1)(4) Is DBNull.Value, "", ds.Tables(4).Rows(1)(4))
-            ddlMedicalTest2.SelectedValue = ds.Tables(4).Rows(1)(5)
-
-        End If
+        Session("NumRows") = ds.Tables(4).Rows.Count
+        LoadMedicalTest(ds.Tables(4))
+        BindDropDowns()
 
     End Sub
 
     Public Sub collectMedicalTest()
-        Dim total As Integer
-        total = IIf(Request.Form("total_selects") <> "", Request.Form("total_selects"), 0)
-
-        Dim testId As String
-        Dim icd1 As String
-        Dim icd2 As String
-        Dim icd3 As String
-        Dim icd4 As String
+        
         Try
-            For i As Integer = 1 To total
-                If i = 1 Then
-                    testId = ddlMedicalTest1.SelectedValue
-                    icd1 = txtICD11.Text
-                    icd2 = txtICD12.Text
-                    icd3 = txtICD13.Text
-                    icd4 = txtICD14.Text
+            If DropDownsDataInMemory IsNot Nothing Then
+                Dim total As Integer
+                Dim testId As String
+                Dim icd1 As String
+                Dim icd2 As String
+                Dim icd3 As String
+                Dim icd4 As String
+                Dim OrderTestId As String
+                Dim op As Integer = Session("option")
+                Dim NumRows As Integer = Session("NumRows")
 
-                    MedicalTestChain = MedicalTestChain & testId & "," & icd1 & "," & icd2 & "," & icd3 & "," & icd4 & "|"
+                total = DropDownsDataInMemory.Rows.Count
+                MedicalTestChain = Nothing
+                InsertNewTest = Nothing
 
+                For i As Integer = 0 To total - 1
+
+                    testId = DropDownsDataInMemory.Rows(i)(1)
+                    If testId <> "-1" Then
+                        If op = 1 Then
+                            icd1 = DropDownsDataInMemory.Rows(i)(2)
+                            icd2 = DropDownsDataInMemory.Rows(i)(3)
+                            icd3 = DropDownsDataInMemory.Rows(i)(4)
+                            icd4 = DropDownsDataInMemory.Rows(i)(5)
+
+                            InsertNewTest = InsertNewTest & testId & "," & icd1 & "," & icd2 & "," & icd3 & "," & icd4 & "|"
+                        Else
+
+                            icd1 = DropDownsDataInMemory.Rows(i)(2)
+                            icd2 = DropDownsDataInMemory.Rows(i)(3)
+                            icd3 = DropDownsDataInMemory.Rows(i)(4)
+                            icd4 = DropDownsDataInMemory.Rows(i)(5)
+                            OrderTestId = DropDownsDataInMemory.Rows(i)(6)
+
+                            If i < NumRows Then
+                                MedicalTestChain = MedicalTestChain & OrderTestId & "," & testId & "," & icd1 & "," & icd2 & "," & icd3 & "," & icd4 & "|"
+                            Else
+                                InsertNewTest = InsertNewTest & testId & "," & icd1 & "," & icd2 & "," & icd3 & "," & icd4 & "|"
+                            End If
+                        End If
+                    End If
+
+                Next
+
+                If InsertNewTest IsNot Nothing Then
+                    InsertNewTest = InsertNewTest.Remove(InsertNewTest.Length - 1, 1)
+                    dbTransactions.InsertNewTestChain = InsertNewTest
+                    If op = 2 Then
+
+                        dbTransactions.InsertNewTests()
+
+                    End If
+                Else
+                    dbTransactions.InsertNewTestChain = ""
                 End If
-                If i = 2 Then
-                    testId = ddlMedicalTest2.SelectedValue
-                    icd1 = txtICD21.Text
-                    icd2 = txtICD22.Text
-                    icd3 = txtICD23.Text
-                    icd4 = txtICD24.Text
 
-                    MedicalTestChain = MedicalTestChain & testId & "," & icd1 & "," & icd2 & "," & icd3 & "," & icd4 & "|"
+                If MedicalTestChain IsNot Nothing Then
+                    MedicalTestChain = MedicalTestChain.Remove(MedicalTestChain.Length - 1, 1)
+                    dbTransactions.MedicalTestChain = MedicalTestChain
+                Else
+                    dbTransactions.MedicalTestChain = ""
                 End If
 
-                If i > 2 Then
-                    testId = Request.Form("wucPrincipalForm1$ddlMedicalTest" & i)
-                    icd1 = Request.Form("wucPrincipalForm1$TextBox" & i & "1")
-                    icd2 = Request.Form("wucPrincipalForm1$TextBox" & i & "2")
-                    icd3 = Request.Form("wucPrincipalForm1$TextBox" & i & "3")
-                    icd4 = Request.Form("wucPrincipalForm1$TextBox" & i & "4")
-
-                    MedicalTestChain = MedicalTestChain & testId & "," & icd1 & "," & icd2 & "," & icd3 & "," & icd4 & "|"
-                End If
-            Next
+            End If
         Catch ex As Exception
-            If ddlMedicalTest1.SelectedIndex <> 0 Then
-                testId = ddlMedicalTest1.SelectedValue
-                icd1 = txtICD11.Text
-                icd2 = txtICD12.Text
-                icd3 = txtICD13.Text
-                icd4 = txtICD14.Text
 
-                MedicalTestChain = MedicalTestChain & testId & "," & icd1 & "," & icd2 & "," & icd3 & "," & icd4 & "|"
-            End If
-
-            If ddlMedicalTest2.SelectedIndex <> 0 Then
-                testId = ddlMedicalTest2.SelectedValue
-                icd1 = txtICD21.Text
-                icd2 = txtICD22.Text
-                icd3 = txtICD23.Text
-                icd4 = txtICD24.Text
-
-                MedicalTestChain = MedicalTestChain & testId & "," & icd1 & "," & icd2 & "," & icd3 & "," & icd4 & "|"
-            End If
         End Try
-
-
-        If MedicalTestChain IsNot Nothing Then
-            MedicalTestChain = MedicalTestChain.Remove(MedicalTestChain.Length - 1, 1)
-        End If
-        If MedicalTestChain IsNot Nothing Then
-            dbTransactions.MedicalTestChain = MedicalTestChain
-        Else
-            dbTransactions.MedicalTestChain = ""
-        End If
 
     End Sub
     Public Sub getOrderNumber()
@@ -637,12 +794,51 @@ Public Class wucPrincipalForm
 
     Protected Sub printBC_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles printBC.Click
         Dim strcadena As String
-        strcadena = txtPDFirstName.Text & txtPDBirthday.Text & wucGender1.getDdlGenderText & ddlMedicalTest1.Text
-        imgBarcode.ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}&width=1000&height=400&size=100", strcadena)
-        imgBarcode.Visible = True
+        Dim dateString As String
+        Dim espacio() As LiteralControl
+        Dim intro() As LiteralControl
 
-        Session("ctrl") = pnlBarcode
-        Page.ClientScript.RegisterStartupScript(Me.GetType(), "onclick", "<script language=javascript>window.open('PrintBarcode.aspx','PrintMe','height=300px,width=300px,scrollbars=1');</script>")
+
+        If txtPDFirstName.Text <> "" And txtPDBirthday.Text <> "" And wucGender1.getDdlGenderText <> "" Then
+            If DropDownsDataInMemory.Rows.Count > 1 Then
+                For i As Integer = 0 To DropDownsDataInMemory.Rows.Count - 1
+                    If DropDownsDataInMemory.Rows(i)(1) <> "-1" Then
+                        Dim img() As WebControls.Image
+
+                        ReDim Preserve img(i)
+                        ReDim Preserve intro(i)
+                        ReDim Preserve espacio(i)
+
+                        img(i) = New WebControls.Image
+                        dateString = Replace(txtPDBirthday.Text, "/", "")
+                        'strcadena = "*" & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderText & DropDownsDataInMemory.Rows(i)(1) & "*"
+                        'strcadena = "*" & txtPDFirstName.Text & wucGender1.getDdlGenderText & DropDownsDataInMemory.Rows(i)(1) & "*"
+                        strcadena = "*" & hdfPatientId.Value & dateString & DropDownsDataInMemory.Rows(i)(1) & "*"
+
+                        'img(i).ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}&width=2000&height=800&size=200", strcadena)
+                        img(i).ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}", strcadena)
+                        'img(i).Width = "500"
+                        'img(i).Height = "300"
+                        espacio(i) = New LiteralControl("&nbsp;")
+                        intro(i) = New LiteralControl("<br /><br />")
+
+
+                        pnlBarcode.Controls.Add(img(i))
+                        pnlBarcode.Controls.Add(espacio(i))
+                        pnlBarcode.Controls.Add(intro(i))
+                    End If
+                    
+                Next
+
+                Session("ctrl") = pnlBarcode
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "onclick", "<script language=javascript>window.open('PrintBarcode.aspx','PrintMe','height=300px,width=300px,scrollbars=1');</script>")
+
+            End If
+
+
+        End If
+
+        
     End Sub
 
     Public Sub SelectPatient()
@@ -762,5 +958,105 @@ Public Class wucPrincipalForm
         'txtPDDateSpecimenCollect.Enabled = lock
         'txtPDHourSpecimenCollectDate.Enabled = lock
 
+    End Sub
+
+    Sub LoadMedicalTest(ByVal table As DataTable)
+
+        Dim dtDropDownsData As DataTable
+
+        dtDropDownsData = New DataTable("DropDownsData")
+
+        'DropDown id 
+        Dim dcIdDropDown As New DataColumn
+        dcIdDropDown.AllowDBNull = False
+        dcIdDropDown.AutoIncrement = True
+        dcIdDropDown.ColumnName = "Id"
+        dcIdDropDown.DataType = Type.GetType("System.Int32")
+
+        'Add the first column to maintain the dropdown id. 
+        dtDropDownsData.Columns.Add(dcIdDropDown)
+
+        'DropDown value 
+        Dim dcValueDropDown As New DataColumn
+        dcValueDropDown.ColumnName = "Value"
+        dcValueDropDown.DataType = Type.GetType("System.String")
+
+        'Add the Second column to maintain the dropdown value. 
+        dtDropDownsData.Columns.Add(dcValueDropDown)
+
+        'ICD1 value 
+        Dim dcValueicd1 As New DataColumn
+        dcValueicd1.ColumnName = "icd1"
+        dcValueicd1.DataType = Type.GetType("System.String")
+
+        'Add the third column to maintain the icd1 value. 
+        dtDropDownsData.Columns.Add(dcValueicd1)
+
+        'ICD2 value 
+        Dim dcValueicd2 As New DataColumn
+        dcValueicd2.ColumnName = "icd2"
+        dcValueicd2.DataType = Type.GetType("System.String")
+
+        'Add the fourth column to maintain the icd2 value. 
+        dtDropDownsData.Columns.Add(dcValueicd2)
+
+        'ICD3 value 
+        Dim dcValueicd3 As New DataColumn
+        dcValueicd3.ColumnName = "icd3"
+        dcValueicd3.DataType = Type.GetType("System.String")
+
+        'Add the fifth column to maintain the icd3 value. 
+        dtDropDownsData.Columns.Add(dcValueicd3)
+
+        'ICD4 value 
+        Dim dcValueicd4 As New DataColumn
+        dcValueicd4.ColumnName = "icd4"
+        dcValueicd4.DataType = Type.GetType("System.String")
+
+        'Add the fifth column to maintain the icd3 value. 
+        dtDropDownsData.Columns.Add(dcValueicd4)
+
+        'Id Order-Test
+        Dim OrderTestId As New DataColumn
+        OrderTestId.ColumnName = "OrderTestId"
+        OrderTestId.DataType = Type.GetType("System.Int32")
+
+        'Add the first column to maintain the dropdown id. 
+        dtDropDownsData.Columns.Add(OrderTestId)
+
+        Dim numRow = table.Rows.Count
+        For i As Integer = 0 To numRow
+
+            Dim drDefault As DataRow = dtDropDownsData.NewRow
+
+            If numRow = i Then
+                drDefault("icd1") = ""
+                drDefault("icd2") = ""
+                drDefault("icd3") = ""
+                drDefault("icd4") = ""
+                drDefault("Value") = "-1"
+                drDefault("OrderTestId") = 0
+            Else
+                drDefault("icd1") = IIf(Not IsDBNull(table.Rows(i)(1)), table.Rows(i)(1), "")
+                drDefault("icd2") = IIf(Not IsDBNull(table.Rows(i)(2)), table.Rows(i)(2), "")
+                drDefault("icd3") = IIf(Not IsDBNull(table.Rows(i)(3)), table.Rows(i)(3), "")
+                drDefault("icd4") = IIf(Not IsDBNull(table.Rows(i)(4)), table.Rows(i)(4), "")
+                drDefault("Value") = table.Rows(i)(5)
+                drDefault("OrderTestId") = table.Rows(i)(0)
+            End If
+
+
+            
+
+            dtDropDownsData.Rows.Add(drDefault)
+            dtDropDownsData.AcceptChanges()
+        Next
+
+        DropDownsDataInMemory = dtDropDownsData
+
+    End Sub
+
+    Sub createImageBC()
+       
     End Sub
 End Class

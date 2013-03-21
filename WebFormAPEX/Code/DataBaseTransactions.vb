@@ -56,6 +56,7 @@ Public Class DataBaseTransactions
     Private _orderId As Integer
     Private _patientSpecimenCollect As String
     Private _medicalTestChain As String
+    Private _insertNewTest As String
 #End Region
 #End Region
 
@@ -383,6 +384,14 @@ Public Class DataBaseTransactions
             _medicalTestChain = value
         End Set
     End Property
+    Public Property InsertNewTestChain() As String
+        Get
+            Return _insertNewTest
+        End Get
+        Set(ByVal value As String)
+            _insertNewTest = value
+        End Set
+    End Property
 #End Region
 #End Region
 
@@ -430,6 +439,8 @@ Public Class DataBaseTransactions
         Me._guarantorId = info.GetValue("_guarantorId", GetType(Integer))
         Me._insuranceId = info.GetValue("_insuranceId", GetType(Integer))
         Me._orderId = info.GetValue("_orderId", GetType(Integer))
+        Me._insertNewTest = info.GetValue("_insertNewTest", GetType(Integer))
+
     End Sub
 #End Region
 
@@ -473,6 +484,8 @@ Public Class DataBaseTransactions
         info.AddValue("_guarantorId", _guarantorId)
         info.AddValue("_insuranceId", _insuranceId)
         info.AddValue("_orderId", _orderId)
+        info.AddValue("_insertNewTest", _insertNewTest)
+
     End Sub
 
     'Function that fills the catalogs of the web application
@@ -488,7 +501,7 @@ Public Class DataBaseTransactions
                                            GuarantorFirstname, GuarantorMiddleName, GuarantorLastname, GuarantorGender, GuarantorDOB, _
                                            GuarantorRelationshipId, GuarantorAddress, GuarantorCity, GuarantorStateId, GuarantorZip, InsurancePlan, _
                                            InsuranceFirstname, InsuranceNiddleName, InsuranceLastname, InsuranceGender, InsuranceDOB, InsuranceRelationshipId, _
-                                           InsuranceAddress, InsuranceCity, InsuranceStateId, InsuranceZip, MedicalTestChain)
+                                           InsuranceAddress, InsuranceCity, InsuranceStateId, InsuranceZip, InsertNewTestChain)
         Return result
     End Function
 
@@ -530,6 +543,13 @@ Public Class DataBaseTransactions
                                          GuarantorRelationshipId, GuarantorAddress, GuarantorCity, GuarantorStateId, GuarantorZip, InsuranceId, _
                                          InsurancePlan, InsuranceFirstname, InsuranceNiddleName, InsuranceLastname, InsuranceGender, InsuranceDOB, _
                                          InsuranceRelationshipId, InsuranceAddress, InsuranceCity, InsuranceStateId, InsuranceZip, OrderId, MedicalTestChain)
+        Return result
+    End Function
+
+    Function InsertNewTests() As String
+        Dim result As String
+        result = data.InsertNewTests(OrderId, InsertNewTestChain)
+
         Return result
     End Function
 End Class

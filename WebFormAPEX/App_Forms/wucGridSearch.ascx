@@ -18,27 +18,27 @@
                         <HeaderStyle HorizontalAlign="Left" />
                         <FooterStyle HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="patient_mrn" meta:resourcekey="patient_mrn">
+                    <asp:BoundField DataField="patient_mrn" meta:resourcekey="patient_mrn" HeaderText="MRN">
                         <ItemStyle HorizontalAlign="Left" Width="80px" />
                         <HeaderStyle HorizontalAlign="Left" />
                         <FooterStyle HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="patient_firstname" meta:resourcekey="patient_firstname">
+                    <asp:BoundField DataField="patient_firstname" meta:resourcekey="patient_firstname" HeaderText="First Name">
                         <ItemStyle HorizontalAlign="Left" Width="150px" />
                         <HeaderStyle HorizontalAlign="Left" />
                         <FooterStyle HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="patient_lastname" meta:resourcekey="patient_lastname">
+                    <asp:BoundField DataField="patient_lastname" meta:resourcekey="patient_lastname" HeaderText="Last Name">
                         <ItemStyle HorizontalAlign="Left" Width="150px" />
                         <HeaderStyle HorizontalAlign="Left" />
                         <FooterStyle HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="patient_order_number" meta:resourcekey="patient_order_number">
+                    <asp:BoundField DataField="patient_order_number" meta:resourcekey="patient_order_number" HeaderText="Order Number">
                         <ItemStyle HorizontalAlign="Left" Width="80px" />
                         <HeaderStyle HorizontalAlign="Left" />
                         <FooterStyle HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:TemplateField meta:resourcekey="BoundFieldResource6">
+                    <asp:TemplateField meta:resourcekey="BoundFieldResource6" HeaderText="Details">
                         <ItemTemplate>
                             <asp:ImageButton ID="btndetail" runat="server" CommandName="Detail" ImageUrl="~/App_Forms/Images/btnNext.jpg" />
                         </ItemTemplate>

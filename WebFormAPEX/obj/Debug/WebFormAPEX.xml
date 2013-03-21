@@ -646,81 +646,9 @@ Label4 control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.ddlMedicalTest1">
+</member><member name="F:WebFormAPEX.wucPrincipalForm.rptDropDowns">
 	<summary>
-ddlMedicalTest1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD11">
-	<summary>
-txtICD11 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD12">
-	<summary>
-txtICD12 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD13">
-	<summary>
-txtICD13 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD14">
-	<summary>
-txtICD14 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.ddlMedicalTest2">
-	<summary>
-ddlMedicalTest2 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD21">
-	<summary>
-txtICD21 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD22">
-	<summary>
-txtICD22 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD23">
-	<summary>
-txtICD23 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.txtICD24">
-	<summary>
-txtICD24 control.
+rptDropDowns control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -785,14 +713,6 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:WebFormAPEX.wucPrincipalForm.pnlBarcode">
 	<summary>
 pnlBarcode control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucPrincipalForm.imgBarcode">
-	<summary>
-imgBarcode control.
 </summary>
 	<remarks>
 Auto-generated field.

@@ -38,11 +38,11 @@ Public Class wucGridSearch
         Me.GridSearch.DataSource = Grid
         Me.GridSearch.DataBind()
 
-        Me.GridSearch.HeaderRow.Cells(1).Text = GetLocalResourceObject("MRN.Header.Text").ToString()
-        Me.GridSearch.HeaderRow.Cells(2).Text = GetLocalResourceObject("FirstName.Header.Text").ToString()
-        Me.GridSearch.HeaderRow.Cells(3).Text = GetLocalResourceObject("LastName.Header.Text").ToString()
-        Me.GridSearch.HeaderRow.Cells(4).Text = GetLocalResourceObject("OrderNumber.Header.Text").ToString()
-        Me.GridSearch.HeaderRow.Cells(5).Text = GetLocalResourceObject("Details.Header.Text").ToString()
+        'Me.GridSearch.HeaderRow.Cells(1).Text = GetLocalResourceObject("MRN.Header.Text").ToString()
+        'Me.GridSearch.HeaderRow.Cells(2).Text = GetLocalResourceObject("FirstName.Header.Text").ToString()
+        'Me.GridSearch.HeaderRow.Cells(3).Text = GetLocalResourceObject("LastName.Header.Text").ToString()
+        'Me.GridSearch.HeaderRow.Cells(4).Text = GetLocalResourceObject("OrderNumber.Header.Text").ToString()
+        'Me.GridSearch.HeaderRow.Cells(5).Text = GetLocalResourceObject("Details.Header.Text").ToString()
     End Sub
 
     

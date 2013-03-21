@@ -377,55 +377,54 @@
                         <td align="left" colspan="3">
                             <table id="table_tests" width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
-                                    <td>
+                                    <td width="72%" align ="left">
                                         <asp:Label ID="lblTest" runat="server" meta:resourcekey="titleLblTestResource"/>
                                     </td>
-                                    <td width="80" align ="left" >
+                                    <td width="7%" align ="left" >
                                         <asp:Label ID="Label1" runat="server" meta:resourcekey="titleLblICD1Resource"/>
                                     </td>
-                                    <td width="80" align ="left">
+                                    <td width="7%" align ="left">
                                         <asp:Label ID="Label2" runat="server" meta:resourcekey="titleLblICD2Resource"/>
                                     </td>
-                                    <td width="80" align ="left">
+                                    <td width="7%" align ="left">
                                         <asp:Label ID="Label3" runat="server" meta:resourcekey="titleLblICD3Resource"/>
                                     </td>
-                                    <td width="80" align ="left">
+                                    <td width="7%" align ="left">
                                         <asp:Label ID="Label4" runat="server" meta:resourcekey="titleLblICD4Resource"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <asp:DropDownList ID="ddlMedicalTest1" runat="server" Width="500" class="chosen"></asp:DropDownList>
-                                    </td>
-                                    <td width="80" align ="left" >
-                                        <asp:TextBox ID="txtICD11" name="wucPrincipalForm1$TextBox11" runat="server" Width="110" MaxLength="50" />
-                                    </td>
-                                    <td width="80" align ="left">
-                                        <asp:TextBox ID="txtICD12" name="wucPrincipalForm1$TextBox12" runat="server" Width="110" MaxLength="50" />
-                                    </td>
-                                    <td width="80" align ="left">
-                                        <asp:TextBox ID="txtICD13" name="wucPrincipalForm1$TextBox13" runat="server" Width="110" MaxLength="50" />
-                                    </td>
-                                    <td width="80" align ="left">
-                                        <asp:TextBox ID="txtICD14" name="wucPrincipalForm1$TextBox14" runat="server" Width="110" MaxLength="50" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:DropDownList ID="ddlMedicalTest2" runat="server" Width="500" class="chosen"></asp:DropDownList>
-                                    </td>
-                                    <td width="80" align ="left" >
-                                        <asp:TextBox ID="txtICD21" name="wucPrincipalForm1$TextBox21" runat="server" Width="110" MaxLength="50" />
-                                    </td>
-                                    <td width="80" align ="left">
-                                        <asp:TextBox ID="txtICD22" name="wucPrincipalForm1$TextBox22" runat="server" Width="110" MaxLength="50" />
-                                    </td>
-                                    <td width="80" align ="left">
-                                        <asp:TextBox ID="txtICD23" runat="server" name="wucPrincipalForm1$TextBox1123" Width="110" MaxLength="50" />
-                                    </td>
-                                    <td width="80" align ="left">
-                                        <asp:TextBox ID="txtICD24" name="wucPrincipalForm1$TextBox24" runat="server" Width="110" MaxLength="50" />
-                                    </td>
+                                    <td colspan="5">
+                                        <!-- dinamics webcontrols -->
+                                        <table width="100%" border="0px" >
+                                            <asp:Repeater runat="server" ID="rptDropDowns"
+                                                           OnItemDataBound="rptDropDowns_ItemDataBound" >
+                                                <ItemTemplate>
+                                                    <tr>
+                                                        <td>
+                                                            <asp:HiddenField runat="server" ID="hdnId" Value='<%# Eval("Id") %>' />
+                                                            <asp:DropDownList ID="ddlMedicalTest" runat="server" Width="500" AutoPostBack="true" 
+                                                                            OnSelectedIndexChanged="ddlMedicalTest_SelectedIndexChanged"
+                                                                            class="chosen" />
+                                                        </td>
+                                                        <td width="80" align ="left" >
+                                                            <asp:TextBox ID="txtICD1" runat="server" Width="110" MaxLength="50" />
+                                                        </td>
+                                                        <td width="80" align ="left">
+                                                            <asp:TextBox ID="txtICD2" runat="server" Width="110" MaxLength="50" />
+                                                        </td>
+                                                        <td width="80" align ="left">
+                                                            <asp:TextBox ID="txtICD3" runat="server" Width="110" MaxLength="50" />
+                                                        </td>
+                                                        <td width="80" align ="left">
+                                                            <asp:TextBox ID="txtICD4" runat="server" Width="110" MaxLength="50" />
+                                                        </td>
+                                                    </tr>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </table>
+                                        <!-- 'dinamics webcontrols -->
+                                    </td>                                    
                                 </tr>
                             </table>                        
                         </td>
@@ -433,11 +432,6 @@
                 </table>
             </td>
         </tr>
-        <%--<tr>
-            <td colspan="3">
-                <uc6:wucGridSearch ID="wucGridSearch1" runat="server"/>
-            </td>
-        </tr>--%>
         <tr>
             <td>
                 <table>
@@ -452,7 +446,7 @@
                             <asp:Button ID="btnSubmit" runat="server" Text="Submit" />
                         </td>
                         <td>
-                            <asp:Button ID="btnMenu" runat="server" Text="Menu" />
+                            <asp:Button ID="btnMenu" runat="server" Text="Menu" Visible="False" />
                         </td>
                     </tr>
                 </table>
@@ -470,8 +464,8 @@
     </table>    
 </div>
 <div id="divBarcode" runat="server" visible="false">
-    <asp:Panel ID="pnlBarcode" runat="server">
-        <asp:Image runat="server" ID="imgBarcode" Visible="false"/>
+    <asp:Panel ID="pnlBarcode" runat="Server">
+        
     </asp:Panel>
 </div>
 <asp:HiddenField ID="hdfPatientId" runat="server"/>

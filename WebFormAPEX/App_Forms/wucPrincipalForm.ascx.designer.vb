@@ -734,94 +734,13 @@ Partial Public Class wucPrincipalForm
     Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''ddlMedicalTest1 control.
+    '''rptDropDowns control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlMedicalTest1 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''txtICD11 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtICD11 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtICD12 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtICD12 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtICD13 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtICD13 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtICD14 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtICD14 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''ddlMedicalTest2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlMedicalTest2 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''txtICD21 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtICD21 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtICD22 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtICD22 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtICD23 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtICD23 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''txtICD24 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtICD24 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents rptDropDowns As Global.System.Web.UI.WebControls.Repeater
 
     '''<summary>
     '''btnReset control.
@@ -894,15 +813,6 @@ Partial Public Class wucPrincipalForm
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnlBarcode As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''imgBarcode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents imgBarcode As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
     '''hdfPatientId control.

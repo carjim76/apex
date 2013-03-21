@@ -36,7 +36,7 @@ Public Class DatDataBaseTransactions
                               ByVal GuarantorZip As String, ByVal InsurancePlan As String, ByVal InsuranceFirstname As String, _
                               ByVal InsuranceNiddleName As String, ByVal InsuranceLastname As String, ByVal InsuranceGender As Char, _
                               ByVal InsuranceDOB As String, ByVal InsuranceRelationshipId As Integer, ByVal InsuranceAddress As String, _
-                              ByVal InsuranceCity As String, ByVal InsuranceStateId As String, ByVal InsuranceZip As String, ByVal MedicalTestChain As String) As Integer
+                              ByVal InsuranceCity As String, ByVal InsuranceStateId As String, ByVal InsuranceZip As String, ByVal InsertNewTest As String) As Integer
 
         command = New SqlCommand
         Try
@@ -246,7 +246,7 @@ Public Class DatDataBaseTransactions
             parameter = New SqlParameter
             parameter.ParameterName = "@testChain"
             parameter.SqlDbType = SqlDbType.VarChar
-            parameter.Value = MedicalTestChain
+            parameter.Value = InsertNewTest
             command.Parameters.Add(parameter)
 
             parameter = New SqlParameter
@@ -652,6 +652,44 @@ Public Class DatDataBaseTransactions
             connection.Open()
             command.ExecuteNonQuery()
             Return command.Parameters("@outResult").Value
+        Catch ex As Exception
+            Return 0
+            ex.Message.ToString()
+        Finally
+            connection.Close()
+        End Try
+    End Function
+
+    Function InsertNewTests(ByVal orderId As Integer, ByVal InsertNewTest As String) As String
+
+        command = New SqlCommand
+        Try
+            adapter = New SqlDataAdapter
+            command.CommandText = "insertTest"
+            command.CommandType = CommandType.StoredProcedure
+            command.Connection = connection
+
+            parameter = New SqlParameter
+            parameter.ParameterName = "@orderNumber"
+            parameter.SqlDbType = SqlDbType.Int
+            parameter.Value = orderId
+            command.Parameters.Add(parameter)
+
+            parameter = New SqlParameter
+            parameter.ParameterName = "@testChain"
+            parameter.SqlDbType = SqlDbType.VarChar
+            parameter.Value = InsertNewTest
+            command.Parameters.Add(parameter)
+
+            parameter = New SqlParameter
+            parameter.ParameterName = "@result"
+            parameter.SqlDbType = SqlDbType.Int
+            parameter.Value = ParameterDirection.Output
+            command.Parameters.Add(parameter)
+
+            connection.Open()
+            command.ExecuteNonQuery()
+            Return command.Parameters("@result").Value
         Catch ex As Exception
             Return 0
             ex.Message.ToString()
