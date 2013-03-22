@@ -31,12 +31,14 @@
 <div id="divForm" runat="server"> 
     <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td width="30%">Patient Orders</td>
+            <td width="30%"><span id="patientOrders">Patient Orders</span> </td>
             <td width="30%">
                 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td>
-                            <asp:Label ID="lblOrderingProvider" runat="server" meta:resourcekey="titleLblOrderingProviderResource"/>
+                            <span id="lblProvider">
+                                <asp:Label ID="lblOrderingProvider" runat="server" meta:resourcekey="titleLblOrderingProviderResource"/>
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -378,7 +380,9 @@
                             <table id="table_tests" width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td width="72%" align ="left">
-                                        <asp:Label ID="lblTest" runat="server" meta:resourcekey="titleLblTestResource"/>
+                                        <span id="spTest">
+                                            <asp:Label ID="lblTest" runat="server" meta:resourcekey="titleLblTestResource"/>
+                                        </span>
                                     </td>
                                     <td width="7%" align ="left" >
                                         <asp:Label ID="Label1" runat="server" meta:resourcekey="titleLblICD1Resource"/>
