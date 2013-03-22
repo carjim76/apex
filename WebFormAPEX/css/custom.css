@@ -18,3 +18,49 @@
     font-size: 40px;
     text-shadow: 1px 1px 1px black;
 }
+
+.formee {
+            font-size: 14px;
+        }
+    
+        .title1{
+            color: #05568D;
+            font-size: 20px;
+        }
+        
+        #wucPrincipalForm1_lblOrderingProvider{
+            font-size: 15px;
+            color: #05568D;
+        }
+        
+        td input{
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        
+        #wucPrincipalForm1_wucGender1_ddlGender, 
+        #wucPrincipalForm1_ddlOrderingProvider, 
+        #wucPrincipalForm1_wucGender3_ddlGender,
+        #wucPrincipalForm1_wucRelationship2_ddlRelationship,
+        #wucPrincipalForm1_wucRelationship1_ddlRelationship,
+        #wucPrincipalForm1_wucState1_ddlState,
+        #wucPrincipalForm1_wucState2_ddlState,
+        #wucPrincipalForm1_wucState3_ddlState,
+        #wucPrincipalForm1_ddlPDEthnicity,
+        #wucPrincipalForm1_wucGender2_ddlGender{
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        
+        #mainTitle{
+            color: #5393C1;
+            font-size: 38px;
+            font-weight: bold;
+            text-shadow: 1px 1px black;
+        }
+        
+         #wucPrincipalForm1_lblTest{
+        color: #5393C1;
+        font-size: 22px;
+        }
+	

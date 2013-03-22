@@ -440,12 +440,12 @@ Public Class wucPrincipalForm
     'method that validates the required fields of the form
     Public Function validateFields() As Boolean
         Dim flag As Boolean = True
-        If ddlOrderingProvider.SelectedValue = -1 Then
-            flag = False
-            lblOrderingProvider.ForeColor = Drawing.Color.Red
-        Else
-            lblOrderingProvider.ForeColor = Drawing.Color.Black
-        End If
+        'If ddlOrderingProvider.SelectedValue = -1 Then
+        '    flag = False
+        '    lblOrderingProvider.ForeColor = Drawing.Color.Red
+        'Else
+        '    lblOrderingProvider.ForeColor = Drawing.Color.Black
+        'End If
 
         If txtPDMRN.Text = "" Then
             flag = False
@@ -465,25 +465,25 @@ Public Class wucPrincipalForm
         Else
             lblPDLastName.ForeColor = Drawing.Color.Black
         End If
-        If wucGender1.getDdlGenderValue = "0" Then
-            flag = False
-            wucGender1.changeColorTitle(1)
-        Else
-            wucGender1.changeColorTitle(2)
+        'If wucGender1.getDdlGenderValue = "0" Then
+        '    flag = False
+        '    wucGender1.changeColorTitle(1)
+        'Else
+        '    wucGender1.changeColorTitle(2)
 
-        End If
-        If ddlPDEthnicity.SelectedValue = -1 Then
-            flag = False
-            lblPDEthnicity.ForeColor = Drawing.Color.Red
-        Else
-            lblPDEthnicity.ForeColor = Drawing.Color.Black
-        End If
-        If wucState1.getDdlStateValue = "-1" Then
-            flag = False
-            wucState1.changeColorTitle(1)
-        Else
-            wucState1.changeColorTitle(2)
-        End If
+        'End If
+        'If ddlPDEthnicity.SelectedValue = -1 Then
+        '    flag = False
+        '    lblPDEthnicity.ForeColor = Drawing.Color.Red
+        'Else
+        '    lblPDEthnicity.ForeColor = Drawing.Color.Black
+        'End If
+        'If wucState1.getDdlStateValue = "-1" Then
+        '    flag = False
+        '    wucState1.changeColorTitle(1)
+        'Else
+        '    wucState1.changeColorTitle(2)
+        'End If
 
         If txtGDFirstName.Text = "" Then
             flag = False
@@ -497,18 +497,18 @@ Public Class wucPrincipalForm
         Else
             lblGDLastName.ForeColor = Drawing.Color.Black
         End If
-        If wucGender2.getDdlGenderValue = "0" Then
-            flag = False
-            wucGender2.changeColorTitle(1)
-        Else
-            wucGender2.changeColorTitle(2)
-        End If
-        If wucRelationship1.getDdlRelationshipValue = -1 Then
-            flag = False
-            wucRelationship1.changeColorTitle(1)
-        Else
-            wucRelationship1.changeColorTitle(2)
-        End If
+        'If wucGender2.getDdlGenderValue = "0" Then
+        '    flag = False
+        '    wucGender2.changeColorTitle(1)
+        'Else
+        '    wucGender2.changeColorTitle(2)
+        'End If
+        'If wucRelationship1.getDdlRelationshipValue = -1 Then
+        '    flag = False
+        '    wucRelationship1.changeColorTitle(1)
+        'Else
+        '    wucRelationship1.changeColorTitle(2)
+        'End If
         If txtIDFirstName.Text = "" Then
             flag = False
             lblIDFirstName.ForeColor = Drawing.Color.Red
@@ -521,31 +521,31 @@ Public Class wucPrincipalForm
         Else
             lblIDLastName.ForeColor = Drawing.Color.Black
         End If
-        If wucGender3.getDdlGenderValue = "0" Then
-            flag = False
-            wucGender3.changeColorTitle(1)
-        Else
-            wucGender3.changeColorTitle(2)
-        End If
-        If wucRelationship2.getDdlRelationshipValue = -1 Then
-            flag = False
-            wucRelationship2.changeColorTitle(1)
-        Else
-            wucRelationship2.changeColorTitle(2)
-        End If
-        If wucState2.getDdlStateValue = "-1" Then
-            flag = False
-            wucState2.changeColorTitle(1)
-        Else
-            wucState2.changeColorTitle(2)
-        End If
+        'If wucGender3.getDdlGenderValue = "0" Then
+        '    flag = False
+        '    wucGender3.changeColorTitle(1)
+        'Else
+        '    wucGender3.changeColorTitle(2)
+        'End If
+        'If wucRelationship2.getDdlRelationshipValue = -1 Then
+        '    flag = False
+        '    wucRelationship2.changeColorTitle(1)
+        'Else
+        '    wucRelationship2.changeColorTitle(2)
+        'End If
+        'If wucState2.getDdlStateValue = "-1" Then
+        '    flag = False
+        '    wucState2.changeColorTitle(1)
+        'Else
+        '    wucState2.changeColorTitle(2)
+        'End If
 
-        If wucState3.getDdlStateValue = "-1" Then
-            flag = False
-            wucState3.changeColorTitle(1)
-        Else
-            wucState3.changeColorTitle(2)
-        End If
+        'If wucState3.getDdlStateValue = "-1" Then
+        '    flag = False
+        '    wucState3.changeColorTitle(1)
+        'Else
+        '    wucState3.changeColorTitle(2)
+        'End If
 
         Return flag
     End Function
@@ -795,43 +795,51 @@ Public Class wucPrincipalForm
     Protected Sub printBC_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles printBC.Click
         Dim strcadena As String
         Dim dateString As String
-        Dim espacio() As LiteralControl
+        Dim espace() As LiteralControl
         Dim intro() As LiteralControl
-
+        Dim img() As WebControls.Image
+        Dim lbl() As Label
+        Dim testDescription As String = ""
 
         If txtPDFirstName.Text <> "" And txtPDBirthday.Text <> "" And wucGender1.getDdlGenderText <> "" Then
             If DropDownsDataInMemory.Rows.Count > 1 Then
                 For i As Integer = 0 To DropDownsDataInMemory.Rows.Count - 1
                     If DropDownsDataInMemory.Rows(i)(1) <> "-1" Then
-                        Dim img() As WebControls.Image
 
+                        For j As Integer = 0 To DropDownSelectValues.Rows.Count - 1
+                            If DropDownsDataInMemory.Rows(i)(1) = DropDownSelectValues.Rows(j)(0) Then
+                                testDescription = DropDownSelectValues.Rows(j)(1)
+                                Exit For
+                            End If
+                        Next
+                        ReDim Preserve lbl(i)
                         ReDim Preserve img(i)
                         ReDim Preserve intro(i)
-                        ReDim Preserve espacio(i)
+                        'ReDim Preserve espace(i)
 
+                        lbl(i) = New Label
                         img(i) = New WebControls.Image
                         dateString = Replace(txtPDBirthday.Text, "/", "")
                         'strcadena = "*" & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderText & DropDownsDataInMemory.Rows(i)(1) & "*"
                         'strcadena = "*" & txtPDFirstName.Text & wucGender1.getDdlGenderText & DropDownsDataInMemory.Rows(i)(1) & "*"
-                        strcadena = "*" & hdfPatientId.Value & dateString & DropDownsDataInMemory.Rows(i)(1) & "*"
+                        strcadena = "*" & txtPDOrder.Text & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderValue & DropDownsDataInMemory.Rows(i)(1) & "*"
 
                         'img(i).ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}&width=2000&height=800&size=200", strcadena)
+                        lbl(i).Text = "Order number: " & txtPDOrder.Text & " Patienr Name: " & txtPDFirstName.Text & " " & txtPDLastName.Text & " Birthday: " & txtPDBirthday.Text & " Gender: " & wucGender1.getDdlGenderText & " Test: " & testDescription
                         img(i).ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}", strcadena)
-                        'img(i).Width = "500"
-                        'img(i).Height = "300"
-                        espacio(i) = New LiteralControl("&nbsp;")
-                        intro(i) = New LiteralControl("<br /><br />")
+                        'espace(i) = New LiteralControl("&nbsp;")
+                        intro(i) = New LiteralControl("<br />")
 
-
-                        pnlBarcode.Controls.Add(img(i))
-                        pnlBarcode.Controls.Add(espacio(i))
+                        pnlBarcode.Controls.Add(lbl(i))
                         pnlBarcode.Controls.Add(intro(i))
+                        pnlBarcode.Controls.Add(img(i))
+                        'pnlBarcode.Controls.Add(intro(i))
                     End If
                     
                 Next
 
                 Session("ctrl") = pnlBarcode
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "onclick", "<script language=javascript>window.open('PrintBarcode.aspx','PrintMe','height=300px,width=300px,scrollbars=1');</script>")
+                Page.ClientScript.RegisterStartupScript(Me.GetType(), "onclick", "<script language=javascript>window.open('PrintBarcode.aspx','PrintMe','height=600px,width=400px,scrollbars=1');</script>")
 
             End If
 
@@ -1056,7 +1064,4 @@ Public Class wucPrincipalForm
 
     End Sub
 
-    Sub createImageBC()
-       
-    End Sub
 End Class

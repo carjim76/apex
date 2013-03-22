@@ -81,10 +81,8 @@
     <Content Include="App_Forms\Images\btnNext.jpg" />
     <Content Include="App_Forms\Images\printer.gif" />
     <Content Include="App_Forms\PrintBarcode.aspx" />
-    <Content Include="App_Forms\wucCalendar.ascx" />
     <Content Include="App_Forms\wucGender.ascx" />
     <Content Include="App_Forms\wucGridSearch.ascx" />
-    <Content Include="App_Forms\wucMedicalTest.ascx" />
     <Content Include="App_Forms\wucRelationship.ascx" />
     <Content Include="App_Forms\wucState.ascx" />
     <Content Include="css\custom.css" />
@@ -151,13 +149,6 @@
       <DependentUpon>PrintBarcode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="App_Forms\wucCalendar.ascx.designer.vb">
-      <DependentUpon>wucCalendar.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Forms\wucCalendar.ascx.vb">
-      <DependentUpon>wucCalendar.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="App_Forms\wucGender.ascx.designer.vb">
       <DependentUpon>wucGender.ascx</DependentUpon>
     </Compile>
@@ -170,13 +161,6 @@
     </Compile>
     <Compile Include="App_Forms\wucGridSearch.ascx.vb">
       <DependentUpon>wucGridSearch.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Forms\wucMedicalTest.ascx.designer.vb">
-      <DependentUpon>wucMedicalTest.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Forms\wucMedicalTest.ascx.vb">
-      <DependentUpon>wucMedicalTest.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Forms\wucRelationship.ascx.designer.vb">
@@ -196,7 +180,6 @@
     <Compile Include="Code\DataBaseTransactions.vb" />
     <Compile Include="Code\DatDataBaseTransactions.vb" />
     <Compile Include="Code\DBConnect.vb" />
-    <Compile Include="Code\MyTextBox.vb" />
     <Compile Include="Code\PrintHelper.vb" />
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodeBehind</SubType>

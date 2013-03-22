@@ -13,11 +13,11 @@ $(function() {
         
            //Get last insert of test table value
          var last_select_value = $('#table_tests select:last').val();
-         console.log(last_select_value);
+         
          
          if (last_select_value>0) {
             
-                console.log('addin new row');          
+                
                 // This is your string :)
                 var myString = '<td align="left">';
                     myString +='<select class="chosen" name="wucPrincipalForm1$ddlMedicalTest'+select_count+'" id="wucPrincipalForm1$ddlMedicalTest'+select_count+'" style="width:500px;">';
@@ -63,7 +63,7 @@ $(function() {
          }
         var total_selects = select_count-2;
          $("#total_selects").val(total_selects);
-         console.log('total selects '+total_selects);
+         
     }
      
      

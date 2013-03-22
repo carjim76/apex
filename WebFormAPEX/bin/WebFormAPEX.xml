@@ -790,22 +790,6 @@ hdfPatientId control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:WebFormAPEX.wucCalendar.TextBox1">
-	<summary>
-TextBox1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucCalendar.Calendar1">
-	<summary>
-Calendar1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member><member name="F:WebFormAPEX.wucState.lblState">
 	<summary>
 lblState control.
@@ -882,46 +866,6 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:WebFormAPEX.wucRelationship.ddlRelationship">
 	<summary>
 ddlRelationship control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucMedicalTest.ddlMedicalTest">
-	<summary>
-ddlMedicalTest control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucMedicalTest.txtICD11">
-	<summary>
-txtICD11 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucMedicalTest.txtICD12">
-	<summary>
-txtICD12 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucMedicalTest.txtICD13">
-	<summary>
-txtICD13 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:WebFormAPEX.wucMedicalTest.txtICD14">
-	<summary>
-txtICD14 control.
 </summary>
 	<remarks>
 Auto-generated field.

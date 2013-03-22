@@ -2,9 +2,26 @@
 <%@ Register Src="wucGender.ascx" Tagname = "wucGender" TagPrefix = "uc1"%>
 <%@ Register Src="wucRelationship.ascx" Tagname = "wucRelationship" TagPrefix = "uc2"%>
 <%@ Register Src="wucState.ascx" Tagname = "wucState" TagPrefix = "uc3"%>
-<%@ Register Src="wucMedicalTest.ascx" Tagname = "wucMedicalTest" TagPrefix = "uc4"%>
-<%@ Register Src="wucCalendar.ascx" Tagname = "wucCalendar" TagPrefix = "uc5"%>
 <%@ Register Src="wucGridSearch.ascx" Tagname = "wucGridSearch" TagPrefix = "uc6"%>
+
+<style type="text/css">
+    .style1
+    {
+        width: 181px;
+    }
+    .style2
+    {
+        width: 1334px;
+    }
+    .style3
+    {
+        width: 1033px;
+    }
+    .style4
+    {
+        width: 2302px;
+    }
+</style>
 
 <script type="text/javascript" language="javascript">
     function solonumeros(e) {
@@ -31,7 +48,7 @@
 <div id="divForm" runat="server"> 
     <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td width="30%"><span id="patientOrders">Patient Orders</span> </td>
+            <td id="mainTitle" width="30%">Patient Orders</td>
             <td width="30%">
                 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -379,21 +396,21 @@
                         <td align="left" colspan="3">
                             <table id="table_tests" width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
-                                    <td width="72%" align ="left">
+                                    <td width="650" align ="left" >
                                         <span id="spTest">
                                             <asp:Label ID="lblTest" runat="server" meta:resourcekey="titleLblTestResource"/>
                                         </span>
                                     </td>
-                                    <td width="7%" align ="left" >
+                                    <td width="80" align ="left">
                                         <asp:Label ID="Label1" runat="server" meta:resourcekey="titleLblICD1Resource"/>
                                     </td>
-                                    <td width="7%" align ="left">
+                                    <td width="80" align ="left">
                                         <asp:Label ID="Label2" runat="server" meta:resourcekey="titleLblICD2Resource"/>
                                     </td>
-                                    <td width="7%" align ="left">
+                                    <td width="80" align ="left">
                                         <asp:Label ID="Label3" runat="server" meta:resourcekey="titleLblICD3Resource"/>
                                     </td>
-                                    <td width="7%" align ="left">
+                                    <td width="80" align ="left">
                                         <asp:Label ID="Label4" runat="server" meta:resourcekey="titleLblICD4Resource"/>
                                     </td>
                                 </tr>

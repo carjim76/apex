@@ -53,7 +53,7 @@ Public Class BarcodeGenerator1
         pathFont = System.AppDomain.CurrentDomain.BaseDirectory & "Fonts\3OF9_NEW.TTF"
         collectionOfFonts.AddFontFile(pathFont)
 
-        Return New Font(collectionOfFonts.Families(0), 36)
+        Return New Font(collectionOfFonts.Families(0), 45)
     End Function
 
     Private Function FormatBarCode(ByVal code As String) As String
