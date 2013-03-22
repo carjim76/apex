@@ -378,7 +378,7 @@ Public Class wucPrincipalForm
 
     End Sub
     'Method that collects form data and save it in database
-    Public Sub collectDataOfForm()
+    Public Sub CollectDataOfForm()
         Try
             Dim strDate, strHour, strDateAndHour As String
             op = Session("option")
@@ -952,6 +952,8 @@ Public Class wucPrincipalForm
     Public Sub back()
         Me.divForm.Visible = True
         Me.divSearch.Visible = False
+        btnSubmit.Text = "SUBMIT"
+        Session("option") = 1
     End Sub
 
     Public Sub FieldsEnable(ByVal lock As Boolean)

@@ -40,7 +40,7 @@ Public Class wucState
         ddlState.DataValueField = ds.Tables(3).Columns(0).ToString
         ddlState.DataTextField = ds.Tables(3).Columns(1).ToString
         ddlState.DataBind()
-        ddlState.Items.Insert(0, New ListItem(GetLocalResourceObject("selectState").ToString, "-1"))
+        ddlState.Items.Insert(0, New ListItem(GetLocalResourceObject("selectState").ToString, "0"))
     End Sub
 
     Public Sub changeColorTitle(ByVal op As Integer)
