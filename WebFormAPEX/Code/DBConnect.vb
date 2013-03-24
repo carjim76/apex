@@ -9,6 +9,7 @@ Public Class DBConnect
     Friend command As SqlCommand
     Friend parameter As SqlParameter
     Friend adapter As SqlDataAdapter
+    'Constructor that sets the parameters for the connection to the database
     Sub New()
         strConnection = ConfigurationManager.ConnectionStrings("StrConn").ConnectionString
         connection = New SqlConnection(strConnection)

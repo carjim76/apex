@@ -845,6 +845,18 @@ Copyright (c) 2011 by Harvest
       this.no_results_clear();
       results = 0;
       searchText = this.search_field.val() === this.default_text ? "" : $('<div/>').text($.trim(this.search_field.val())).html();
+      //Bic Change
+      console.log(searchText.length);
+        if (2 >= searchText.length) {
+            jQuery('.chzn-results').hide();
+            //return this.no_results('');
+        }else
+        if (searchText.length > 2 ) {
+            jQuery('.chzn-results').show();
+        } 
+        
+        
+      /////        
       regexAnchor = this.search_contains ? "" : "^";
       regex = new RegExp(regexAnchor + searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), 'i');
       zregex = new RegExp(searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), 'i');

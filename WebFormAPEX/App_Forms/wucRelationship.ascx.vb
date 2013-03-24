@@ -7,13 +7,13 @@ Public Class wucRelationship
 
 #End Region
 #Region "Properties"
-
+    'Property to get the value of the DropDownList
     Public ReadOnly Property getDdlRelationshipValue As Integer
         Get
             Return ddlRelationship.SelectedItem.Value
         End Get
     End Property
-
+    'Property to get the text of the DropDownList
     Public ReadOnly Property getDdlRelationshipText
         Get
             Return ddlRelationship.SelectedItem.Text
@@ -27,7 +27,7 @@ Public Class wucRelationship
             loadItems()
         End If
     End Sub
-
+    'Method to load items DropDownList
     Public Sub loadItems()
         Dim ds As DataSet
         ds = dbTransactions.fillCatalogs()
@@ -37,11 +37,11 @@ Public Class wucRelationship
         ddlRelationship.DataBind()
         ddlRelationship.Items.Insert(0, New ListItem(GetLocalResourceObject("selectRelationship").ToString, "-1"))
     End Sub
-
+    'method that sets the DropDownList index to zero
     Public Sub cleanValues()
         ddlRelationship.SelectedIndex = 0
     End Sub
-
+    'method to change the color of the label that identifies the DropDownList
     Public Sub changeColorTitle(ByVal op As Integer)
         If op = 1 Then
             lblRelationship.ForeColor = Drawing.Color.Red
@@ -49,7 +49,7 @@ Public Class wucRelationship
             lblRelationship.ForeColor = Drawing.Color.Black
         End If
     End Sub
-
+    'method to set the value of DropDownList
     Public Sub setValue(ByVal val As String)
         ddlRelationship.SelectedValue = val
     End Sub

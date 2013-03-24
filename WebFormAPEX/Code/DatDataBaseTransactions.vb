@@ -25,7 +25,7 @@ Public Class DatDataBaseTransactions
             connection.Close()
         End Try
     End Function
-
+    ''Function that performs the insertion of patient data in the database
     Function dataProcessing(ByVal PatientMRN As Integer, ByVal PatientFirstname As String, ByVal PatientMiddleName As String, _
                               ByVal PatientLastname As String, ByVal PatientGender As Char, ByVal PatientDOB As String, _
                               ByVal PatientEthnicityId As Integer, ByVal PatientAddress As String, ByVal PatientCity As String, _
@@ -265,7 +265,7 @@ Public Class DatDataBaseTransactions
             connection.Close()
         End Try
     End Function
-
+    'Function that searches Patient data given the MRN, Fisrtname, gender or DOB
     Function SearchPatients(ByVal PatientMRN As Integer, ByVal PatientFirstname As String, ByVal PatientGender As Char, ByVal PatientDOB As String) As DataTable
         Dim dt As DataTable = New DataTable
         Try
@@ -329,7 +329,7 @@ Public Class DatDataBaseTransactions
             connection.Close()
         End Try
     End Function
-
+    'Function that searches Patient data given the MRN, 
     Function searchData(ByVal PatientMRN As Integer) As DataSet
         Dim dt As DataSet = New DataSet
         Try
@@ -355,7 +355,7 @@ Public Class DatDataBaseTransactions
             connection.Close()
         End Try
     End Function
-
+    'Function that searches Patient data given the Id
     Function searchDataByPatientId(ByVal patientId As Integer) As DataSet
         Dim ds As DataSet = New DataSet
         Try
@@ -381,7 +381,7 @@ Public Class DatDataBaseTransactions
             connection.Close()
         End Try
     End Function
-
+    'Function to get the last order number 
     Function getOrderNumber() As DataTable
         Dim dt As DataTable = New DataTable
         Try
@@ -401,7 +401,7 @@ Public Class DatDataBaseTransactions
         End Try
 
     End Function
-
+    'Function to update the patient data 
     Function PatientDataUpdates(ByVal PatientId As Integer, ByVal PatientFirstname As String, ByVal PatientMiddleName As String, _
                               ByVal PatientLastname As String, ByVal PatientGender As Char, ByVal PatientDOB As String, _
                               ByVal PatientEthnicityId As Integer, ByVal PatientAddress As String, ByVal PatientCity As String, _
@@ -659,7 +659,7 @@ Public Class DatDataBaseTransactions
             connection.Close()
         End Try
     End Function
-
+    'Function to insert a new medical test
     Function InsertNewTests(ByVal orderId As Integer, ByVal InsertNewTest As String) As String
 
         command = New SqlCommand

@@ -24,15 +24,7 @@ Public Class PrintHelper
     Public Sub PrintWebControl(ByVal ctrl As Control, ByVal script As String)
         Dim stringWrite As StringWriter = New StringWriter
         Dim htmlWrite = New System.Web.UI.HtmlTextWriter(stringWrite)
-        'Dim webCtrl As WebControl
-        'webCtrl = New WebControl(
-
-        'If ctrl Is webCtrl Then
-
-        '    Dim w = New Unit(100, UnitType.Percentage)
-        '    CType(ctrl, WebControl).Width = w
-
-        'End If
+        
 
         Dim pg As Page = New Page
         pg.EnableEventValidation = False

@@ -12,6 +12,7 @@ Public Class wucGridSearch
 #End Region
 
 #Region "Properties"
+    'Property to get and set values ​​containing a DataTable
     Public Property Grid() As DataTable
         Get
             Return _dt
@@ -20,6 +21,7 @@ Public Class wucGridSearch
             _dt = value
         End Set
     End Property
+    'Property to get and set the Id of a patient selected in the GridView
     Public Property PatientId() As Integer
         Get
             Return hdfPatientId.Value
@@ -32,9 +34,9 @@ Public Class wucGridSearch
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         
     End Sub
-
+    'method that loads a search values ​​in GridView
     Public Sub FillGrid()
-        'Me.gvSearch.DataSource = _ds.Tables(0)
+
         Me.GridSearch.DataSource = Grid
         Me.GridSearch.DataBind()
 

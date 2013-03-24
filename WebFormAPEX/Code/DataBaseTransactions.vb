@@ -494,7 +494,7 @@ Public Class DataBaseTransactions
         dsRelationship = data.fillCatalogs()
         Return dsRelationship
     End Function
-
+    'Function that performs the insertion of patient data in the database
     Public Function dataProcessing()
         Dim result = data.dataProcessing(PatientMRN, PatientFirstname, PatientMiddleName, PatientLastname, PatientGender, PatientDOB, _
                                            PatientEthnicityId, PatientAddress, PatientCity, PatientStateId, PatientZip, PatientSpecimenCollect, _
@@ -504,37 +504,37 @@ Public Class DataBaseTransactions
                                            InsuranceAddress, InsuranceCity, InsuranceStateId, InsuranceZip, InsertNewTestChain)
         Return result
     End Function
-
+    'Function that searches Patient data given the MRN, Fisrtname, gender or DOB
     Public Function SearchPatients() As DataTable
         Dim dt As DataTable = New DataTable
         dt = data.SearchPatients(PatientMRN, PatientFirstname, PatientGender, PatientDOB)
         Return dt
     End Function
-
+    'Function to get the last Patient Inserted in to database
     Public Function getLastInsertedPatient() As DataSet
         Dim dt As DataSet = New DataSet
         dt = data.getLastInsertedPatient()
         Return dt
     End Function
-
+    'Function that searches Patient data given the MRN, 
     Public Function searchData() As DataSet
         Dim dt As DataSet = New DataSet
         dt = data.searchData(PatientMRN)
         Return dt
     End Function
-
+    'Function to get the last order number 
     Public Function getOrderNumber() As DataTable
         Dim dt As DataTable = New DataTable
         dt = data.getOrderNumber()
         Return dt
     End Function
-
+    'Function that searches Patient data given the Id
     Public Function searchDataByPatientId() As DataSet
         Dim ds As DataSet = New DataSet
         ds = data.searchDataByPatientId(PatientId)
         Return ds
     End Function
-
+    'Function to update the patient data 
     Public Function patientDataUpdates() As Integer
         Dim result As Integer
         result = data.PatientDataUpdates(PatientId, PatientFirstname, PatientMiddleName, PatientLastname, PatientGender, PatientDOB, _
@@ -545,7 +545,7 @@ Public Class DataBaseTransactions
                                          InsuranceRelationshipId, InsuranceAddress, InsuranceCity, InsuranceStateId, InsuranceZip, OrderId, MedicalTestChain)
         Return result
     End Function
-
+    'Function to insert a new medical test
     Function InsertNewTests() As String
         Dim result As String
         result = data.InsertNewTests(OrderId, InsertNewTestChain)

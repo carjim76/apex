@@ -157,7 +157,7 @@
     <value>Ethnicity</value>
   </data>
   <data name="titleLblPDMRNResource.Text" xml:space="preserve">
-    <value>MRN</value>
+    <value>MRN *</value>
   </data>
   <data name="titleLblPDOrderResource.Text" xml:space="preserve">
     <value>Order #</value>

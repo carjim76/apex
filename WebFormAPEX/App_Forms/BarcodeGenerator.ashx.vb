@@ -9,7 +9,7 @@ Imports System.Drawing.Text
 
 Public Class BarcodeGenerator1
     Implements System.Web.IHttpHandler
-
+    'method to process the request to generate the barcode
     Sub ProcessRequest(ByVal context As HttpContext) Implements IHttpHandler.ProcessRequest
 
         Dim cd As String
@@ -45,7 +45,7 @@ Public Class BarcodeGenerator1
         End If
 
     End Sub
-
+    'metodo para cargar el tipo de fuente 3of9
     Private Function loadFont(ByVal size As Integer) As Font
         Dim collectionOfFonts As New PrivateFontCollection()
         Dim pathFont As String
@@ -55,7 +55,7 @@ Public Class BarcodeGenerator1
 
         Return New Font(collectionOfFonts.Families(0), 45)
     End Function
-
+    'function that returns the string formatted for reading the bar code
     Private Function FormatBarCode(ByVal code As String) As String
         Return String.Format("*{0}*", code)
     End Function

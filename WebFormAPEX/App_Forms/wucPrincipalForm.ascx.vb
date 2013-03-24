@@ -8,16 +8,17 @@ Public Class wucPrincipalForm
     Inherits System.Web.UI.UserControl
 
 #Region "Variables"
+    'global variables of the class
     Dim dbTransactions As New DataBaseTransactions
     Dim dt As DataTable
     Private printer As New PrintDocument()
-    Private myFont As Font
     Private _MedicalTestChain As String
     Private _insertNewTest As String
     Dim op As Integer
 
 #End Region
 #Region "Properties"
+    'property to insert "n" number of testing a patient in the database
     Public Property InsertNewTest() As String
         Get
             Return _insertNewTest
@@ -26,7 +27,7 @@ Public Class wucPrincipalForm
             _insertNewTest = value
         End Set
     End Property
-
+    'property to update "n" number of testing a patient in the database
     Public Property MedicalTestChain() As String
         Get
             Return _MedicalTestChain
@@ -36,7 +37,7 @@ Public Class wucPrincipalForm
         End Set
     End Property
 
-    'dinamics webcontrols
+    'property to load the test catalog in a session variable
     Public Property DropDownSelectValues() As DataTable
         Get
             Return IIf(Session("DropDownSelectValues") Is Nothing, _
@@ -48,7 +49,7 @@ Public Class wucPrincipalForm
         End Set
     End Property
 
-    'dinamics webcontrols
+    'property to store the values ​​of the "ICD's"
     Public Property DropDownsDataInMemory() As DataTable
         Get
             Dim dtDropDownsData As DataTable
@@ -126,7 +127,7 @@ Public Class wucPrincipalForm
         End Set
     End Property
 #End Region
-
+    'event that initializes the form
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         AddHandler wucGridSearch1.FillFormFields, AddressOf SelectPatient
         AddHandler wucGridSearch1.Back, AddressOf back
@@ -144,7 +145,7 @@ Public Class wucPrincipalForm
         End If
 
     End Sub
-    'dinamics webcontrols
+    'repeater control event "rptDropDowns" to add n number of tests in the form
     Protected Sub rptDropDowns_ItemDataBound(ByVal sender As Object, _
                                              ByVal e As RepeaterItemEventArgs) Handles rptDropDowns.ItemDataBound
         '
@@ -182,7 +183,7 @@ Public Class wucPrincipalForm
         End If
     End Sub
 
-    'dinamics webcontrols
+    'event that creates a new dod dwon list to select a member from the list of control "ddlMedicalTest"
     Protected Sub ddlMedicalTest_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
 
         Dim DropwDownId As String = CType(CType(sender, DropDownList).Parent.FindControl("hdnId"), HiddenField).Value
@@ -212,6 +213,7 @@ Public Class wucPrincipalForm
         End If
 
     End Sub
+    'metodo para obtener los valores de los ICD's
     Sub LoadDataICDS()
         For i As Integer = 0 To DropDownsDataInMemory.Rows.Count - 1
 
@@ -229,7 +231,7 @@ Public Class wucPrincipalForm
 
         Next
     End Sub
-    'dinamics webcontrols
+    'method to add a new DropDownList and set its default values
     Sub AddNewDropDown(ByVal id As String)
         'logica para agregar un nuevo DropDown
         Dim dvFilter As New DataView(DropDownsDataInMemory)
@@ -248,24 +250,24 @@ Public Class wucPrincipalForm
         BindDropDowns()
     End Sub
 
-    'dinamics webcontrols
+    'function that returns the value of the DropDownsDataInMemory property
     Function GetDataDropDowns() As DataTable
 
         Return DropDownsDataInMemory
 
     End Function
 
-    'dinamics webcontrols
+    'method that adds the user-created DropDownList
     Sub BindDropDowns()
         rptDropDowns.DataSource = GetDataDropDowns()
         rptDropDowns.DataBind()
     End Sub
-    'dinamics webcontrols
+    'method that deleted the DropDownList user-created 
     Sub ClearDropdowns()
         DropDownsDataInMemory = Nothing
         BindDropDowns()
     End Sub
-
+    'event to clear entries in the form
     Protected Sub btnReset_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnReset.Click
         cleanForm()
         cleanVariables()
@@ -549,7 +551,7 @@ Public Class wucPrincipalForm
 
         Return flag
     End Function
-
+    'charging method that DropDownList values ​​with data from catalogs database
     Public Sub loadCatalogs()
         Dim ds As DataSet
         ds = dbTransactions.fillCatalogs()
@@ -584,7 +586,7 @@ Public Class wucPrincipalForm
         End If
 
     End Sub
-
+    'event that adds or updates the data of a patient
     Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubmit.Click
         'If opDB = 1 Then
         Dim result As Integer
@@ -616,7 +618,7 @@ Public Class wucPrincipalForm
 
         '' '' ''    Response.Write("value icd4" & i & ":" & v4 & "<br>")
     End Sub
-
+    'event to search the data of a patient
     Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearch.Click
         Dim ds As DataSet
         Dim dt As DataTable
@@ -645,12 +647,12 @@ Public Class wucPrincipalForm
         Me.divSearch.Visible = True
         btnSubmit.Text = "UPDATE"
     End Sub
-
+    'method that loads patient data after performing a search
     Public Sub fillFormFields(ByVal ds As DataSet)
 
         Dim stringDate As Date
         hdfPatientId.Value = ds.Tables(0).Rows(0)(0)
-        txtPDMRN.Text = ds.Tables(0).Rows(0)(1)
+        txtPDMRN.Text = ds.Tables(0).Rows(0)(1) '
         txtPDFirstName.Text = ds.Tables(0).Rows(0)(2)
         txtPDMiddleName.Text = ds.Tables(0).Rows(0)(3)
         txtPDLastName.Text = ds.Tables(0).Rows(0)(4)
@@ -704,7 +706,7 @@ Public Class wucPrincipalForm
         BindDropDowns()
 
     End Sub
-
+    'method that collects the values ​​of the patient's medical tests and stores them in a string
     Public Sub collectMedicalTest()
         
         Try
@@ -777,6 +779,7 @@ Public Class wucPrincipalForm
         End Try
 
     End Sub
+    'method that gets the last order number inserted into the database
     Public Sub getOrderNumber()
         Dim dt As DataTable
         Dim orderNumber As Integer
@@ -791,7 +794,7 @@ Public Class wucPrincipalForm
         End If
 
     End Sub
-
+    'event that prints the bar code to each patient's medical test
     Protected Sub printBC_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles printBC.Click
         Dim strcadena As String
         Dim dateString As String
@@ -822,7 +825,7 @@ Public Class wucPrincipalForm
                         dateString = Replace(txtPDBirthday.Text, "/", "")
                         'strcadena = "*" & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderText & DropDownsDataInMemory.Rows(i)(1) & "*"
                         'strcadena = "*" & txtPDFirstName.Text & wucGender1.getDdlGenderText & DropDownsDataInMemory.Rows(i)(1) & "*"
-                        strcadena = "*" & txtPDOrder.Text & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderValue & DropDownsDataInMemory.Rows(i)(1) & "*"
+                        strcadena = txtPDOrder.Text & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderValue & DropDownsDataInMemory.Rows(i)(1)
 
                         'img(i).ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}&width=2000&height=800&size=200", strcadena)
                         lbl(i).Text = "Order number: " & txtPDOrder.Text & " Patienr Name: " & txtPDFirstName.Text & " " & txtPDLastName.Text & " Birthday: " & txtPDBirthday.Text & " Gender: " & wucGender1.getDdlGenderText & " Test: " & testDescription
@@ -848,7 +851,7 @@ Public Class wucPrincipalForm
 
         
     End Sub
-
+    'method that displays patient data after being selected from a grid
     Public Sub SelectPatient()
         Dim ds As DataSet
         dbTransactions.PatientId = wucGridSearch1.PatientId
@@ -858,11 +861,7 @@ Public Class wucPrincipalForm
         Me.divSearch.Visible = False
         FieldsEnable(False)
     End Sub
-
-    Protected Sub btnMenu_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnMenu.Click
-        
-    End Sub
-
+    'method that initializes the value of the properties of the class DataBaseTransactions
     Public Sub cleanVariables()
         dbTransactions.PatientId = 0
         dbTransactions.PatientMRN = 0
@@ -907,10 +906,12 @@ Public Class wucPrincipalForm
         dbTransactions.MedicalTestChain = ""
 
     End Sub
+    'method that gets the current time
     Public Sub loadHour()
         Dim time As DateTime = Now
         txtPDHourSpecimenCollectDate.Text = time.ToString("HH:mm")
     End Sub
+    'method that inserts data from a new patient
     Public Sub insertNewPatien()
         Dim result As Integer
         Dim numberOfRows As Integer
@@ -949,13 +950,14 @@ Public Class wucPrincipalForm
 
         End If
     End Sub
+    'method that displays the main form after a search
     Public Sub back()
         Me.divForm.Visible = True
         Me.divSearch.Visible = False
         btnSubmit.Text = "SUBMIT"
         Session("option") = 1
     End Sub
-
+    'method that enables or disables the field "MRN"
     Public Sub FieldsEnable(ByVal lock As Boolean)
 
         txtPDMRN.Enabled = lock
@@ -969,7 +971,7 @@ Public Class wucPrincipalForm
         'txtPDHourSpecimenCollectDate.Enabled = lock
 
     End Sub
-
+    'metodo que recarga el valor de la propiedad DropDownsDataInMemory
     Sub LoadMedicalTest(ByVal table As DataTable)
 
         Dim dtDropDownsData As DataTable
@@ -1054,9 +1056,6 @@ Public Class wucPrincipalForm
                 drDefault("Value") = table.Rows(i)(5)
                 drDefault("OrderTestId") = table.Rows(i)(0)
             End If
-
-
-            
 
             dtDropDownsData.Rows.Add(drDefault)
             dtDropDownsData.AcceptChanges()
