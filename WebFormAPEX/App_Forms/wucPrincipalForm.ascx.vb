@@ -720,7 +720,7 @@ Public Class wucPrincipalForm
                         img(i) = New WebControls.Image
                         dateString = Replace(txtPDBirthday.Text, "/", "")
                         
-                        strcadena = txtPDOrder.Text & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderValue & DropDownsDataInMemory.Rows(i)(1)
+                        strcadena = "*" & txtPDOrder.Text & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderValue & DropDownsDataInMemory.Rows(i)(1) & "*"
 
                         lbl(i).Text = "Order number: " & txtPDOrder.Text & " Patienr Name: " & txtPDFirstName.Text & " " & txtPDLastName.Text & " Birthday: " & txtPDBirthday.Text & " Gender: " & wucGender1.getDdlGenderText & " Test: " & testDescription
                         img(i).ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}", strcadena)
@@ -731,12 +731,14 @@ Public Class wucPrincipalForm
                         pnlBarcode.Controls.Add(intro(i))
                         pnlBarcode.Controls.Add(img(i))
 
+                        Session("ctrl") = pnlBarcode
+                        Page.ClientScript.RegisterStartupScript(Me.GetType(), "onclick", "<script language=javascript>window.open('PrintBarcode.aspx','PrintMe','height=600px,width=400px,scrollbars=1');</script>")
+
                     End If
                     
                 Next
 
-                Session("ctrl") = pnlBarcode
-                Page.ClientScript.RegisterStartupScript(Me.GetType(), "onclick", "<script language=javascript>window.open('PrintBarcode.aspx','PrintMe','height=600px,width=400px,scrollbars=1');</script>")
+                
 
             End If
 

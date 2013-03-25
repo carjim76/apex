@@ -36,7 +36,8 @@ Public Class BarcodeGenerator1
                 Dim brush = New SolidBrush(Color.Black)
 
                 grafic.FillRectangle(New SolidBrush(Color.White), 0, 0, width, height)
-                grafic.DrawString(FormatBarCode(cd), font, brush, 30, 30)
+                'grafic.DrawString(FormatBarCode(cd), font, brush, 30, 30)
+                grafic.DrawString(cd, font, brush, 30, 30)
                 context.Response.ContentType = "image/jpeg"
                 bitmap.Save(context.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg)
             End Using
