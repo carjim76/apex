@@ -39,19 +39,10 @@ Public Class wucGridSearch
 
         Me.GridSearch.DataSource = Grid
         Me.GridSearch.DataBind()
-
-        'Me.GridSearch.HeaderRow.Cells(1).Text = GetLocalResourceObject("MRN.Header.Text").ToString()
-        'Me.GridSearch.HeaderRow.Cells(2).Text = GetLocalResourceObject("FirstName.Header.Text").ToString()
-        'Me.GridSearch.HeaderRow.Cells(3).Text = GetLocalResourceObject("LastName.Header.Text").ToString()
-        'Me.GridSearch.HeaderRow.Cells(4).Text = GetLocalResourceObject("OrderNumber.Header.Text").ToString()
-        'Me.GridSearch.HeaderRow.Cells(5).Text = GetLocalResourceObject("Details.Header.Text").ToString()
     End Sub
 
-    
-    
     Private Sub GridSearch_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridSearch.RowCommand
         If e.CommandName = "Detail" Then
-            'hdfPatientId.Value = GridSearch.DataKeys.Item(e.CommandArgument).Value
             hdfPatientId.Value = GridSearch.DataKeys(e.CommandArgument).Item("patient_id")
             RaiseEvent FillFormFields()
         End If
@@ -63,7 +54,7 @@ Public Class wucGridSearch
             btn.CommandArgument = e.Row.RowIndex
         End If
     End Sub
-
+    'event returns to the main view
     Protected Sub btnBack_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnBack.Click
         RaiseEvent Back()
     End Sub

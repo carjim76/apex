@@ -139,7 +139,6 @@ Public Class wucPrincipalForm
             getOrderNumber()
             Session("option") = 1
 
-            'dinamics webcontrols
             BindDropDowns()
             ClearDropdowns()
         End If
@@ -233,7 +232,7 @@ Public Class wucPrincipalForm
     End Sub
     'method to add a new DropDownList and set its default values
     Sub AddNewDropDown(ByVal id As String)
-        'logica para agregar un nuevo DropDown
+
         Dim dvFilter As New DataView(DropDownsDataInMemory)
         dvFilter.RowFilter = String.Format("Id = {0}", id)
         If Not dvFilter.ToTable().Rows.Count.Equals(0) AndAlso _
@@ -287,10 +286,8 @@ Public Class wucPrincipalForm
         txtPDCity.Text = ""
         txtPDZip.Text = ""
         txtPDDateSpecimenCollect.Text = ""
-        'txtPDOrder.Text = ""
         getOrderNumber()
 
-        'txtPDHourSpecimenCollectDate.Text = ""
         loadHour()
 
         txtGDFirstName.Text = ""
@@ -312,15 +309,6 @@ Public Class wucPrincipalForm
         txtIDGroup.Text = ""
         txtIDPolicy.Text = ""
 
-        'txtICD11.Text = ""
-        'txtICD12.Text = ""
-        'txtICD13.Text = ""
-        'txtICD14.Text = ""
-        'txtICD21.Text = ""
-        'txtICD22.Text = ""
-        'txtICD23.Text = ""
-        'txtICD24.Text = ""
-
         wucGender1.cleanValues()
         wucGender2.cleanValues()
         wucGender3.cleanValues()
@@ -333,11 +321,7 @@ Public Class wucPrincipalForm
         ddlPDEthnicity.SelectedIndex = 0
         ddlOrderingProvider.SelectedIndex = 0
 
-        'ddlMedicalTest1.SelectedIndex = 0
-        'ddlMedicalTest2.SelectedIndex = 0
-
         lblOrderingProvider.ForeColor = Drawing.Color.Black
-
 
         lblPDMRN.ForeColor = Drawing.Color.Black
 
@@ -442,12 +426,6 @@ Public Class wucPrincipalForm
     'method that validates the required fields of the form
     Public Function validateFields() As Boolean
         Dim flag As Boolean = True
-        'If ddlOrderingProvider.SelectedValue = -1 Then
-        '    flag = False
-        '    lblOrderingProvider.ForeColor = Drawing.Color.Red
-        'Else
-        '    lblOrderingProvider.ForeColor = Drawing.Color.Black
-        'End If
 
         If txtPDMRN.Text = "" Then
             flag = False
@@ -467,25 +445,6 @@ Public Class wucPrincipalForm
         Else
             lblPDLastName.ForeColor = Drawing.Color.Black
         End If
-        'If wucGender1.getDdlGenderValue = "0" Then
-        '    flag = False
-        '    wucGender1.changeColorTitle(1)
-        'Else
-        '    wucGender1.changeColorTitle(2)
-
-        'End If
-        'If ddlPDEthnicity.SelectedValue = -1 Then
-        '    flag = False
-        '    lblPDEthnicity.ForeColor = Drawing.Color.Red
-        'Else
-        '    lblPDEthnicity.ForeColor = Drawing.Color.Black
-        'End If
-        'If wucState1.getDdlStateValue = "-1" Then
-        '    flag = False
-        '    wucState1.changeColorTitle(1)
-        'Else
-        '    wucState1.changeColorTitle(2)
-        'End If
 
         If txtGDFirstName.Text = "" Then
             flag = False
@@ -499,18 +458,7 @@ Public Class wucPrincipalForm
         Else
             lblGDLastName.ForeColor = Drawing.Color.Black
         End If
-        'If wucGender2.getDdlGenderValue = "0" Then
-        '    flag = False
-        '    wucGender2.changeColorTitle(1)
-        'Else
-        '    wucGender2.changeColorTitle(2)
-        'End If
-        'If wucRelationship1.getDdlRelationshipValue = -1 Then
-        '    flag = False
-        '    wucRelationship1.changeColorTitle(1)
-        'Else
-        '    wucRelationship1.changeColorTitle(2)
-        'End If
+        
         If txtIDFirstName.Text = "" Then
             flag = False
             lblIDFirstName.ForeColor = Drawing.Color.Red
@@ -523,31 +471,6 @@ Public Class wucPrincipalForm
         Else
             lblIDLastName.ForeColor = Drawing.Color.Black
         End If
-        'If wucGender3.getDdlGenderValue = "0" Then
-        '    flag = False
-        '    wucGender3.changeColorTitle(1)
-        'Else
-        '    wucGender3.changeColorTitle(2)
-        'End If
-        'If wucRelationship2.getDdlRelationshipValue = -1 Then
-        '    flag = False
-        '    wucRelationship2.changeColorTitle(1)
-        'Else
-        '    wucRelationship2.changeColorTitle(2)
-        'End If
-        'If wucState2.getDdlStateValue = "-1" Then
-        '    flag = False
-        '    wucState2.changeColorTitle(1)
-        'Else
-        '    wucState2.changeColorTitle(2)
-        'End If
-
-        'If wucState3.getDdlStateValue = "-1" Then
-        '    flag = False
-        '    wucState3.changeColorTitle(1)
-        'Else
-        '    wucState3.changeColorTitle(2)
-        'End If
 
         Return flag
     End Function
@@ -568,19 +491,6 @@ Public Class wucPrincipalForm
         ddlOrderingProvider.DataBind()
         ddlOrderingProvider.Items.Insert(0, New ListItem(GetLocalResourceObject("selectProvider").ToString, "-1"))
 
-        'ddlMedicalTest1.DataSource = ds.Tables(4)
-        'ddlMedicalTest1.DataValueField = ds.Tables(4).Columns(0).ToString
-        'ddlMedicalTest1.DataTextField = ds.Tables(4).Columns(1).ToString
-        'ddlMedicalTest1.DataBind()
-        'ddlMedicalTest1.Items.Insert(0, New ListItem(GetLocalResourceObject("selectMedicalTest").ToString, "-1"))
-
-        'ddlMedicalTest2.DataSource = ds.Tables(4)
-        'ddlMedicalTest2.DataValueField = ds.Tables(4).Columns(0).ToString
-        'ddlMedicalTest2.DataTextField = ds.Tables(4).Columns(1).ToString
-        'ddlMedicalTest2.DataBind()
-        'ddlMedicalTest2.Items.Insert(0, New ListItem(GetLocalResourceObject("selectMedicalTest").ToString, "-1"))
-
-        'dinamics webcontrols
         If ds.Tables.Count > 4 Then
             DropDownSelectValues = ds.Tables(4)
         End If
@@ -588,7 +498,7 @@ Public Class wucPrincipalForm
     End Sub
     'event that adds or updates the data of a patient
     Protected Sub btnSubmit_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSubmit.Click
-        'If opDB = 1 Then
+
         Dim result As Integer
         Dim MsjAlert As String
         op = Session("option")
@@ -616,7 +526,6 @@ Public Class wucPrincipalForm
 
         End If
 
-        '' '' ''    Response.Write("value icd4" & i & ":" & v4 & "<br>")
     End Sub
     'event to search the data of a patient
     Protected Sub btnSearch_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSearch.Click
@@ -626,23 +535,11 @@ Public Class wucPrincipalForm
         Session("option") = 2
         collectDataOfForm()
 
-        'ds = dbTransactions.searchData()
-
-        'fillFormFields(ds)
-
         dt = dbTransactions.SearchPatients
-        'If dt.Rows.Count > 1 Then
+
         wucGridSearch1.Grid = dt
         wucGridSearch1.FillGrid()
 
-        'Else
-        '    Dim patientId As Integer
-        '    cleanVariables()
-        '    patientId = dt.Rows(0)(0)
-        '    dbTransactions.PatientId = patientId
-        '    ds = dbTransactions.searchDataByPatientId()
-        '    fillFormFields(ds)
-        'End If
         Me.divForm.Visible = False
         Me.divSearch.Visible = True
         btnSubmit.Text = "UPDATE"
@@ -818,25 +715,22 @@ Public Class wucPrincipalForm
                         ReDim Preserve lbl(i)
                         ReDim Preserve img(i)
                         ReDim Preserve intro(i)
-                        'ReDim Preserve espace(i)
 
                         lbl(i) = New Label
                         img(i) = New WebControls.Image
                         dateString = Replace(txtPDBirthday.Text, "/", "")
-                        'strcadena = "*" & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderText & DropDownsDataInMemory.Rows(i)(1) & "*"
-                        'strcadena = "*" & txtPDFirstName.Text & wucGender1.getDdlGenderText & DropDownsDataInMemory.Rows(i)(1) & "*"
+                        
                         strcadena = txtPDOrder.Text & txtPDFirstName.Text & dateString & wucGender1.getDdlGenderValue & DropDownsDataInMemory.Rows(i)(1)
 
-                        'img(i).ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}&width=2000&height=800&size=200", strcadena)
                         lbl(i).Text = "Order number: " & txtPDOrder.Text & " Patienr Name: " & txtPDFirstName.Text & " " & txtPDLastName.Text & " Birthday: " & txtPDBirthday.Text & " Gender: " & wucGender1.getDdlGenderText & " Test: " & testDescription
                         img(i).ImageUrl = String.Format("BarcodeGenerator.ashx?code={0}", strcadena)
-                        'espace(i) = New LiteralControl("&nbsp;")
+
                         intro(i) = New LiteralControl("<br />")
 
                         pnlBarcode.Controls.Add(lbl(i))
                         pnlBarcode.Controls.Add(intro(i))
                         pnlBarcode.Controls.Add(img(i))
-                        'pnlBarcode.Controls.Add(intro(i))
+
                     End If
                     
                 Next
@@ -961,15 +855,7 @@ Public Class wucPrincipalForm
     Public Sub FieldsEnable(ByVal lock As Boolean)
 
         txtPDMRN.Enabled = lock
-        'txtPDFirstName.Enabled = lock
-        'txtPDMiddleName.Enabled = lock
-        'txtPDLastName.Enabled = lock
-        'wucGender1.Enabled = lock
-        'txtPDBirthday.Enabled = lock
-        'ddlPDEthnicity.Enabled = lock
-        'txtPDDateSpecimenCollect.Enabled = lock
-        'txtPDHourSpecimenCollectDate.Enabled = lock
-
+        
     End Sub
     'metodo que recarga el valor de la propiedad DropDownsDataInMemory
     Sub LoadMedicalTest(ByVal table As DataTable)
